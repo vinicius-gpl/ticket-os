@@ -30,13 +30,13 @@ function fixture() {
       typeof data === "string" ? data : JSON.stringify(data, null, 2) + "\n",
     );
   };
-  write("acerola/agent/wails.json", { info: { productVersion: "0.1.0" } });
+  write("ticket-os/agent/wails.json", { info: { productVersion: "0.1.0" } });
   write(
-    "acerola/agent/src-go/lib/version/version.go",
+    "ticket-os/agent/src-go/lib/version/version.go",
     'package version\nconst Current = "0.1.0"\n',
   );
-  write("acerola/agent/svelte/package.json", { version: "0.1.0" });
-  write("acerola/agent/svelte/package-lock.json", {
+  write("ticket-os/agent/svelte/package.json", { version: "0.1.0" });
+  write("ticket-os/agent/svelte/package-lock.json", {
     version: "0.1.0",
     packages: { "": { version: "0.1.0" } },
   });
@@ -84,7 +84,7 @@ test("commits only version files to main and develop and is idempotent", () => {
     });
     for (const branch of ["main", "develop"]) {
       const data = JSON.parse(
-        f.git("show", `origin/${branch}:acerola/agent/wails.json`),
+        f.git("show", `origin/${branch}:ticket-os/agent/wails.json`),
       );
       assert.equal(data.info.productVersion, "1.2.3");
       assert.equal(

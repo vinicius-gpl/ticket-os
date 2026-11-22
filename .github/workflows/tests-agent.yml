@@ -3,7 +3,7 @@ on:
   pull_request:
     paths:
       [
-        "acerola/agent/**",
+        "ticket-os/agent/**",
         ".github/scripts/release/**",
         ".github/workflows/*-agent*.yml",
         ".github/workflows/release-bump.yml",
@@ -12,7 +12,7 @@ on:
     branches: [main, develop]
     paths:
       [
-        "acerola/agent/**",
+        "ticket-os/agent/**",
         ".github/scripts/release/**",
         ".github/workflows/*-agent*.yml",
         ".github/workflows/release-bump.yml",

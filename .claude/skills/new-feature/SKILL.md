@@ -10,7 +10,7 @@ e siga a mesma forma: nomes, comentários (o porquê, em português), estados, t
 o CONTRIBUTING manda.
 
 Nos caminhos abaixo, `<entity>` é o nome em inglês, singular, kebab-case (`customer`), e
-`<entities>` o plural (`customers`). Tudo relativo a `acerola/dashboard/`.
+`<entities>` o plural (`customers`). Tudo relativo a `ticket-os/dashboard/`.
 
 ## 0. Entender e confirmar (antes de qualquer código)
 
@@ -87,12 +87,12 @@ banco (unique, check, relação).
 - `lib/hooks/use-<entity>-form/use-<entity>-form.svelte.ts` (+ `.test.ts`) — TanStack Form
   (versão Svelte) com `validators: { onChange: <entity>FormSchema }` (**só `onChange`**: com
   `onSubmit` o erro fica preso) e `mutate` (não `await mutateAsync`).
-- `routes/(app)/<context>/<entities>/components/acerola-<entity>-list-view/acerola-<entity>-list-view.svelte`,
-  `routes/(app)/<context>/<entities>/components/acerola-<entity>-form-dialog/acerola-<entity>-form-dialog.svelte`
+- `routes/(app)/<context>/<entities>/components/ticket-os-<entity>-list-view/ticket-os-<entity>-list-view.svelte`,
+  `routes/(app)/<context>/<entities>/components/ticket-os-<entity>-form-dialog/ticket-os-<entity>-form-dialog.svelte`
   — componentes **da feature**: moram na rota, não em `lib/`. Cada um com `.stories.svelte`
-  (`Features/<Entities>/…`) e `.test.ts`. Só importam `acerola-*` genéricos de `lib/components/`
-  (`acerola-page-header`, `acerola-empty-state`, `acerola-error-state`, `acerola-confirm-dialog`,
-  `acerola-action-button`, `acerola-text-field`…), nunca `ui/*`. Siga `design-system`,
+  (`Features/<Entities>/…`) e `.test.ts`. Só importam `ticket-os-*` genéricos de `lib/components/`
+  (`ticket-os-page-header`, `ticket-os-empty-state`, `ticket-os-error-state`, `ticket-os-confirm-dialog`,
+  `ticket-os-action-button`, `ticket-os-text-field`…), nunca `ui/*`. Siga `design-system`,
   `ui-component` e `ui-standards`. Faltou um genérico? Instale do shadcn e envolva — não recrie.
 - `routes/(app)/<context>/<entities>/+page.svelte` — só composição: hook + componente + classes de
   cor/espaço/layout (modelo: `routes/(app)/infra/parts/+page.svelte`). Formulário em diálogo ligado ao

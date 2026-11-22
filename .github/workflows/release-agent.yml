@@ -27,7 +27,7 @@ jobs:
           name: agent-release
           path: release
       - name: Install storage SDK from the project lockfile
-        working-directory: acerola/dashboard
+        working-directory: ticket-os/dashboard
         run: npm ci --ignore-scripts
       - name: Upload version archive and latest manifest to private S3
         run: node .github/scripts/release/publish-agent.mjs

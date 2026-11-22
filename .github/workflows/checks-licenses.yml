@@ -25,14 +25,14 @@ jobs:
           node-version: 24
           cache: npm
           cache-dependency-path: |
-            acerola/dashboard/package-lock.json
-            acerola/dashboard/bot/package-lock.json
-            acerola/agent/svelte/package-lock.json
+            ticket-os/dashboard/package-lock.json
+            ticket-os/dashboard/bot/package-lock.json
+            ticket-os/agent/svelte/package-lock.json
 
       - uses: actions/setup-go@v6
         with:
-          go-version-file: acerola/agent/go.mod
-          cache-dependency-path: acerola/agent/go.sum
+          go-version-file: ticket-os/agent/go.mod
+          cache-dependency-path: ticket-os/agent/go.sum
 
       - name: Test the license policy rules
         run: node --test .github/scripts/licenses/license-policy.test.mjs
@@ -40,16 +40,16 @@ jobs:
       # `--ignore-scripts`: só os arquivos interessam aqui. Nenhum script de instalação de
       # dependência precisa rodar para se ler a licença dela.
       - name: Install dashboard dependencies
-        working-directory: acerola/dashboard
+        working-directory: ticket-os/dashboard
         run: npm ci --ignore-scripts
 
       # O bot de WhatsApp é um pacote à parte, com instalação própria (ver bot/README.md).
       - name: Install WhatsApp bot dependencies
-        working-directory: acerola/dashboard/bot
+        working-directory: ticket-os/dashboard/bot
         run: npm ci --ignore-scripts
 
       - name: Install agent UI dependencies
-        working-directory: acerola/agent/svelte
+        working-directory: ticket-os/agent/svelte
         run: npm ci --ignore-scripts
 
       # `--strict`: aqui, o que não dá para conferir reprova — não vira aviso.

@@ -9,7 +9,7 @@ import { compareVersions, parseTag } from "./version.mjs";
 const digest = (body) => createHash("sha256").update(body).digest("hex");
 export function releaseFiles(directory, version) {
   const allowed =
-    /^(acerola-agent-\d+\.\d+\.\d+-x64\.msi|publisher\.cer|install-certificate\.ps1|configure-machine\.ps1|latest\.json|SHA256SUMS)$/;
+    /^(ticket-os-agent-\d+\.\d+\.\d+-x64\.msi|publisher\.cer|install-certificate\.ps1|configure-machine\.ps1|latest\.json|SHA256SUMS)$/;
   const names = readdirSync(directory);
   if (names.some((name) => !allowed.test(name)))
     throw new Error("Unexpected file in release directory");
@@ -17,7 +17,7 @@ export function releaseFiles(directory, version) {
     names.map((name) => [name, readFileSync(resolve(directory, name))]),
   );
   for (const name of [
-    `acerola-agent-${version}-x64.msi`,
+    `ticket-os-agent-${version}-x64.msi`,
     "publisher.cer",
     "install-certificate.ps1",
     "configure-machine.ps1",
@@ -30,7 +30,7 @@ export function releaseFiles(directory, version) {
   if (manifest.version !== version)
     throw new Error("Artifact and tag versions differ");
   for (const [type, file] of [
-    ["msi", `acerola-agent-${version}-x64.msi`],
+    ["msi", `ticket-os-agent-${version}-x64.msi`],
     ["certificate", "publisher.cer"],
   ]) {
     const artifact = manifest.artifacts?.[type];
@@ -67,7 +67,7 @@ export async function publish(directory, version, get, put) {
 
 async function main() {
   const require = createRequire(
-    resolve("acerola/dashboard/server/package.json"),
+    resolve("ticket-os/dashboard/server/package.json"),
   );
   const {
     S3Client,

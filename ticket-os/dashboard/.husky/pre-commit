@@ -1,0 +1,2 @@
+sh ticket-os/dashboard/scripts/git/branch-guard.sh commit
+cd ticket-os/dashboard && npm run lint

@@ -14,7 +14,7 @@ function fixture() {
     sha256: createHash("sha256").update("fixture").digest("hex"),
   });
   for (const file of [
-    "acerola-agent-1.2.3-x64.msi",
+    "ticket-os-agent-1.2.3-x64.msi",
     "publisher.cer",
     "configure-machine.ps1",
     "install-certificate.ps1",
@@ -27,7 +27,7 @@ function fixture() {
       version: "1.2.3",
       publishedAt: "2026-10-15T12:00:00.000Z",
       artifacts: {
-        msi: artifact("acerola-agent-1.2.3-x64.msi"),
+        msi: artifact("ticket-os-agent-1.2.3-x64.msi"),
         certificate: artifact("publisher.cer"),
       },
     }),
@@ -91,7 +91,7 @@ test("never advertises partial uploads, downgrades or altered MSI bytes", async 
       ),
       /newer release/,
     );
-    writeFileSync(join(directory, "acerola-agent-1.2.3-x64.msi"), "tampered");
+    writeFileSync(join(directory, "ticket-os-agent-1.2.3-x64.msi"), "tampered");
     await assert.rejects(
       publish(
         directory,

@@ -5,7 +5,7 @@ description: Cria ou altera os dados de teste (seeds) — uma pasta por entidade
 
 # Dados de teste (seeds)
 
-Caminhos relativos a `acerola/dashboard/`. Modelo: `scripts/seed/parts/`.
+Caminhos relativos a `ticket-os/dashboard/`. Modelo: `scripts/seed/parts/`.
 
 ## Estrutura
 
@@ -59,7 +59,7 @@ report('clientes', await seedCustomers(db));
 report('pedidos', await seedOrders(db));   // pedido aponta para cliente
 ```
 
-E um script individual em `acerola/dashboard/package.json`, no padrão de `seed:parts`:
+E um script individual em `ticket-os/dashboard/package.json`, no padrão de `seed:parts`:
 
 ```json
 "seed:customers": "npm run build -w @template/shared && tsx scripts/seed/customers/seed-customers.ts"

@@ -1,9 +1,9 @@
 node_modules/
 dist/
 build/
-# Exceção: acerola/agent/build/ não é saída de build, é a pasta que o Wails
+# Exceção: ticket-os/agent/build/ não é saída de build, é a pasta que o Wails
 # usa por convenção pra ícones e manifesto do instalador — código-fonte.
-!acerola/agent/build/
+!ticket-os/agent/build/
 coverage/
 reports/
 .vite/
@@ -23,11 +23,11 @@ test-results/
 !.env.example
 
 # As conexões de WhatsApp do bot, cifradas. Nunca vão para o git.
-acerola/dashboard/bot/data/
+ticket-os/dashboard/bot/data/
 
 # Valor falso só para o Vitest carregar em `import.meta.env` — sem ele, o CI (que nunca tem
 # um `.env` de verdade) não consegue nem carregar a tela de login para testar o resto.
-!acerola/dashboard/client/.env.test
+!ticket-os/dashboard/client/.env.test
 
 # O banco SQLite local. O que é versionado são as migrations e os seeds, não os dados.
 *.db
@@ -35,8 +35,8 @@ acerola/dashboard/bot/data/
 *.db-shm
 *.db-journal
 
-acerola/dashboard/client/src/lib/api/generated/
-acerola/dashboard/client/src/routeTree.gen.ts
+ticket-os/dashboard/client/src/lib/api/generated/
+ticket-os/dashboard/client/src/routeTree.gen.ts
 
 .DS_Store
 Thumbs.db
@@ -47,9 +47,9 @@ desktop.ini
 .claude/settings.local.json
 
 # Saídas de release e bindings gerados; chaves privadas nunca são artefatos de distribuição.
-acerola/agent/build/bin/
-acerola/agent/build/release/
-acerola/agent/svelte/wailsjs/
+ticket-os/agent/build/bin/
+ticket-os/agent/build/release/
+ticket-os/agent/svelte/wailsjs/
 /agent-bin/
 /release/
 *.pfx

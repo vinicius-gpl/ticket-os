@@ -1,8 +1,8 @@
-# Acerola Ticket
+# ticket-os
 
 <p align="center">
   <a href="docs/brag/brag.mp4">
-    <img src="docs/brag/brag.jpg" alt="Assista ao vídeo de apresentação do Acerola Ticket" width="85%">
+    <img src="docs/brag/brag.jpg" alt="Assista ao vídeo de apresentação do ticket-os" width="85%">
   </a>
 </p>
 
@@ -90,15 +90,15 @@ limpeza — com foto, patrimônio, depósito, descarte, orçamentos e os chamado
 - **Abrir chamado** com print e anexos, e acompanhar os seus em "Meus chamados".
 - **Validar documento**: a ordem de serviço impressa traz um código que qualquer pessoa confere
   em `/verify`, sem login.
-- **WhatsApp**: o bot recebe o pedido de acesso e reconhece a pessoa pelo cadastro do Acerola.
+- **WhatsApp**: o bot recebe o pedido de acesso e reconhece a pessoa pelo cadastro do ticket-os.
 
 ## Como as peças se conectam
 
 ```mermaid
 flowchart LR
-    Agent["Agente Windows\n(acerola/agent)"] -->|"medições"| API
-    Web["Tela SvelteKit\n(acerola/dashboard/client)"] --> API["API NestJS\n(acerola/dashboard/server)"]
-    Bot["Bot de WhatsApp\n(acerola/dashboard/bot)"] --> API
+    Agent["Agente Windows\n(ticket-os/agent)"] -->|"medições"| API
+    Web["Tela SvelteKit\n(ticket-os/dashboard/client)"] --> API["API NestJS\n(ticket-os/dashboard/server)"]
+    Bot["Bot de WhatsApp\n(ticket-os/dashboard/bot)"] --> API
     API --> Neon[("Postgres + Auth\nna Neon")]
     API --> R2[("Cloudflare R2\narquivos e releases do agente")]
     API -->|"PRs e issues"| GitHub["GitHub"]
@@ -110,9 +110,9 @@ e os arquivos vão do navegador direto para o R2 por link assinado, sem passar p
 
 | Pasta | O que é | Stack | Leia mais |
 | --- | --- | --- | --- |
-| [`acerola/dashboard/`](acerola/dashboard/) | API, tela e contrato compartilhado | NestJS · SvelteKit · Zod · Drizzle | este README |
-| [`acerola/dashboard/bot/`](acerola/dashboard/bot/) | Bot de WhatsApp | Node · Baileys | [whatsapp-bot.md](acerola/dashboard/docs/whatsapp-bot.md) |
-| [`acerola/agent/`](acerola/agent/) | Agente Windows (serviço + tela) | Go · Wails · Svelte | [releases.md](acerola/agent/docs/releases.md) · [architecture.md](acerola/agent/docs/architecture.md) |
+| [`ticket-os/dashboard/`](ticket-os/dashboard/) | API, tela e contrato compartilhado | NestJS · SvelteKit · Zod · Drizzle | este README |
+| [`ticket-os/dashboard/bot/`](ticket-os/dashboard/bot/) | Bot de WhatsApp | Node · Baileys | [whatsapp-bot.md](ticket-os/dashboard/docs/whatsapp-bot.md) |
+| [`ticket-os/agent/`](ticket-os/agent/) | Agente Windows (serviço + tela) | Go · Wails · Svelte | [releases.md](ticket-os/agent/docs/releases.md) · [architecture.md](ticket-os/agent/docs/architecture.md) |
 | [`docs/`](docs/) | Vídeo de apresentação e prints | HyperFrames | [brag-plan.md](docs/brag/brag-plan.md) |
 
 ---
@@ -167,7 +167,7 @@ Em seguida, peça **`/renomear-projeto`** para o nome do seu MVP aparecer nas te
 <summary>Prefere fazer à mão? São quatro comandos.</summary>
 
 ```bash
-cd acerola/dashboard # o sistema fica uma pasta abaixo da raiz
+cd ticket-os/dashboard # o sistema fica uma pasta abaixo da raiz
 npm install # baixa as dependências (demora alguns minutos na primeira vez)
 npm run seed:all # cria o banco e grava os dados de teste
 npm run dev # sobe o sistema
@@ -216,17 +216,17 @@ Skills são receitas prontas. O Claude usa sozinho quando o pedido combina, e vo
 
 ## Estrutura
 
-A raiz do repositório só guarda documentação e configuração de equipe. O sistema inteiro vive em `acerola/dashboard/`.
+A raiz do repositório só guarda documentação e configuração de equipe. O sistema inteiro vive em `ticket-os/dashboard/`.
 
 ```text
-acerola-ticket/                         # raiz do repositório git
+ticket-os/                         # raiz do repositório git
 ├── README.md · CONTRIBUTING.md         # para pessoas
 ├── CLAUDE.md                           # para o Claude
 ├── .claude/skills/                     # as receitas do Claude
 ├── .github/                            # CI e modelo de PR
 ├── .vscode/                            # configuração e extensões recomendadas
 │
-└── acerola/
+└── ticket-os/
     └── dashboard/                      # o sistema — "npm install" roda aqui
         ├── package.json                # workspaces: shared, server, client
         │
@@ -299,14 +299,14 @@ Instale as ferramentas e inicie o servidor com o ambiente do mise:
 
 ```bash
 mise install
-cd acerola/dashboard
+cd ticket-os/dashboard
 mise exec -- npm run dev
 ```
 
 Depois de instalar uma ferramenta nova, reinicie o servidor para atualizar seu `PATH`.
 
 
-Todos rodam dentro de `acerola/dashboard/`:
+Todos rodam dentro de `ticket-os/dashboard/`:
 
 | Comando                           | O que faz                                                                    |
 | --------------------------------- | ---------------------------------------------------------------------------- |
@@ -331,7 +331,7 @@ sistema não o usa mais, e a remoção é de quem administra o projeto (o arquiv
 
 
 ```bash
-cd acerola/dashboard
+cd ticket-os/dashboard
 docker compose -f docker/compose.yml up --build
 ```
 
@@ -341,11 +341,11 @@ Uma imagem só: o Nest serve `/api` **e** a tela na mesma porta. O banco (Neon) 
 
 Em produção o container fica atrás de um proxy (Traefik, Caddy ou nginx), e parte da proteção é
 configurada nele — tamanho máximo de upload, limite das rotas públicas, `API_TRUST_PROXY_HOPS`.
-Os exemplos prontos estão em [`acerola/dashboard/docs/reverse-proxy.md`](acerola/dashboard/docs/reverse-proxy.md).
+Os exemplos prontos estão em [`ticket-os/dashboard/docs/reverse-proxy.md`](ticket-os/dashboard/docs/reverse-proxy.md).
 
-O bot de WhatsApp é um programa à parte (`acerola/dashboard/bot/`) que sobe dentro do mesmo
+O bot de WhatsApp é um programa à parte (`ticket-os/dashboard/bot/`) que sobe dentro do mesmo
 container quando `BOT_API_TOKEN` e `BOT_SESSION_KEY` estão configurados — ver
-[`acerola/dashboard/docs/whatsapp-bot.md`](acerola/dashboard/docs/whatsapp-bot.md).
+[`ticket-os/dashboard/docs/whatsapp-bot.md`](ticket-os/dashboard/docs/whatsapp-bot.md).
 
 ---
 
@@ -402,7 +402,7 @@ Quando houver autenticação, as responsabilidades são separadas:
 
 Login não concede autorização automaticamente. Mesmo autenticado, o usuário continua sujeito aos papéis e às policies.
 
-### Quem acessa o quê no acerola
+### Quem acessa o quê no ticket-os
 
 Toda pessoa da empresa tem conta no Neon Auth: abrir chamado exige login. Ter conta, porém, não
 abre módulo nenhum.
@@ -443,11 +443,11 @@ Mudanças de autenticação devem possuir testes para login válido, credencial 
 O agente é publicado por tag (`agent/v1.2.3`): a CI compila, gera o MSI assinado e envia os
 arquivos ao **mesmo bucket do R2** do dashboard, em `agent/releases/<versão>/`. Uma versão só vai
 para as máquinas depois de promovida a **LTS** (workflow **Release/Agent LTS**). O serviço
-`AcerolaAgent` consulta a LTS a cada hora e se atualiza sozinho, sem janela nem login.
+`TicketOsAgent` consulta a LTS a cada hora e se atualiza sozinho, sem janela nem login.
 
 No dashboard, **Agente Windows** (em Infraestrutura e Sistema) baixa a LTS e lista **todas as
 versões publicadas** no R2. O passo a passo — segredos do GitHub, certificado, primeira
-instalação e diagnóstico — está em [`acerola/agent/docs/releases.md`](acerola/agent/docs/releases.md).
+instalação e diagnóstico — está em [`ticket-os/agent/docs/releases.md`](ticket-os/agent/docs/releases.md).
 
 ---
 
@@ -486,7 +486,7 @@ Nada é obrigatório para rodar na sua máquina: todo valor tem padrão. Os exem
 
 A tag `agent/vX.Y.Z` gera os arquivos do agente e os publica no mesmo bucket S3 privado
 usado pelo dashboard. O agente instalado pode coletar e se atualizar antes do login. Configuração de Secrets, certificado e primeira instalação:
-[guia de releases do agente](acerola/agent/docs/releases.md).
+[guia de releases do agente](ticket-os/agent/docs/releases.md).
 
 Node na linha **LTS, com a faixa fechada** — `>=24.0.0 <25.0.0`. As travas (ESLint 9, TypeScript 5, NestJS 11) e o motivo de cada uma estão na [seção 13 do CONTRIBUTING](CONTRIBUTING.md#13-versões--só-o-que-ainda-tem-suporte).
 
@@ -532,7 +532,7 @@ A chave fica só no `.git/config` do seu clone — não é versionada e não lib
 
 Ela libera as duas travas: o hook do git e o hook do Claude Code.
 
-A lista do que é protegido fica em `acerola/dashboard/scripts/git/protected-structure.txt` (§17 do CONTRIBUTING). Login e autenticação não fazem mais parte dessa lista — ver CONTRIBUTING §17.
+A lista do que é protegido fica em `ticket-os/dashboard/scripts/git/protected-structure.txt` (§17 do CONTRIBUTING). Login e autenticação não fazem mais parte dessa lista — ver CONTRIBUTING §17.
 
 No GitHub, proteja a `main` (o hook local não pega merge **fast-forward**, e quem tem o clone pode desligar hooks): **Settings → Branches → Add branch ruleset** para `main`, com **Restrict updates** e **Require a pull request before merging**, liberando só você. Marque também o repositório como **Template repository** (Settings → General).
 

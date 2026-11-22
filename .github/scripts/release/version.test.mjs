@@ -49,7 +49,7 @@ test("updates all owned version files and lock entries without changing dependen
   };
   const read = (path) => JSON.parse(readFileSync(join(root, path), "utf8"));
   try {
-    const agent = "acerola/agent/";
+    const agent = "ticket-os/agent/";
     write(agent + "wails.json", { info: { productVersion: "0.1.0" } });
     write(
       agent + "src-go/lib/version/version.go",
@@ -66,7 +66,7 @@ test("updates all owned version files and lock entries without changing dependen
         "node_modules/fixture": { version: "3.2.1" },
       },
     });
-    const dashboard = "acerola/dashboard/";
+    const dashboard = "ticket-os/dashboard/";
     for (const file of [
       "package.json",
       "client/package.json",
