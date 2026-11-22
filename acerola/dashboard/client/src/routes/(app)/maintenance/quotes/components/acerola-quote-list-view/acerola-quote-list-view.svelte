@@ -227,7 +227,7 @@
                   href={quote.attachmentUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="text-primary inline-flex min-w-0 items-center gap-1.5 text-xs font-medium underline-offset-4 hover:underline"
+                  class="text-primary-strong inline-flex min-w-0 items-center gap-1.5 text-xs font-medium underline-offset-4 hover:underline"
                 >
                   <Paperclip class="size-3.5 shrink-0" aria-hidden="true" />
                   <span class="truncate">{quote.attachmentName ?? 'Abrir documento'}</span>

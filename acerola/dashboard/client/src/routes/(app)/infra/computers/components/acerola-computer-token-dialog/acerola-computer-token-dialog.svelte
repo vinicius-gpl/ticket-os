@@ -88,7 +88,7 @@
   <DialogContent>
     <DialogHeader class="gap-1.5">
       <div class="flex items-center gap-2.5">
-        <span class="flex size-7 shrink-0 items-center justify-center rounded-chip bg-primary/10 text-primary">
+        <span class="flex size-7 shrink-0 items-center justify-center rounded-chip bg-primary/10 text-primary-strong">
           <KeyRound class="size-4" aria-hidden="true" />
         </span>
         <DialogTitle class="text-lg font-semibold tracking-tight">Token de {data.computerName}</DialogTitle>
@@ -111,7 +111,7 @@
         <span class="font-medium text-foreground">Comando no PowerShell:</span>
         <button
           type="button"
-          class="text-primary hover:underline text-xs flex items-center gap-1 cursor-pointer font-medium"
+          class="text-primary-strong hover:underline text-xs flex items-center gap-1 cursor-pointer font-medium"
           onclick={() => void copyCommand()}
         >
           {hasCopiedCommand ? 'Copiado!' : 'Copiar comando'}

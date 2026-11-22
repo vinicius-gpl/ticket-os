@@ -58,7 +58,7 @@
 
         <a
           href="/forgot-password"
-          class="text-primary text-sm font-medium underline-offset-4 hover:underline"
+          class="text-primary-strong text-sm font-medium underline-offset-4 hover:underline"
         >
           Pedir um link novo
         </a>

@@ -299,7 +299,7 @@
     <!-- O protocolo ocupa a tela inteira: é o que a pessoa precisa levar daqui. -->
     <div class="flex flex-col items-center gap-3 py-6 text-center">
       <p class="text-ink-700 text-sm">Chamado aberto. Seu protocolo é:</p>
-      <strong class="text-primary text-3xl font-bold tracking-wide">{data.opened.protocol}</strong>
+      <strong class="text-primary-strong text-3xl font-bold tracking-wide">{data.opened.protocol}</strong>
       <p class="text-ink-500 max-w-md text-sm">
         Guarde este número — é com ele que você acompanha o andamento aqui mesmo.
       </p>
@@ -385,7 +385,7 @@
                       : 'border-border/80 bg-card hover:bg-muted/40',
                   )}
                 >
-                  <card.icon class="text-primary size-5" aria-hidden="true" />
+                  <card.icon class="text-primary-strong size-5" aria-hidden="true" />
                   <span class="text-ink-900 text-sm font-semibold">{card.label}</span>
                   <span class="text-ink-500 text-xs">{card.description}</span>
                 </button>

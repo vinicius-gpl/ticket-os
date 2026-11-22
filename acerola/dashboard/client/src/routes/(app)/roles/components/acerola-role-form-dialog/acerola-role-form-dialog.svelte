@@ -167,7 +167,7 @@
     <DialogHeader class="gap-1.5">
       <div class="flex items-center gap-2.5">
         <span
-          class="flex size-7 shrink-0 items-center justify-center rounded-chip bg-primary/10 text-primary"
+          class="flex size-7 shrink-0 items-center justify-center rounded-chip bg-primary/10 text-primary-strong"
         >
           <ShieldCheck class="size-4" aria-hidden="true" />
         </span>
@@ -263,7 +263,7 @@
                                 {selectedUser?.name || fields.userEmail.value || fields.userId.value}
                               </span>
                               <span
-                                class="text-xs font-medium text-primary bg-primary/10 px-1.5 py-0.5 rounded-chip border border-primary/20 shrink-0"
+                                class="text-xs font-medium text-primary-strong bg-primary/10 px-1.5 py-0.5 rounded-chip border border-primary/20 shrink-0"
                               >
                                 Selecionada
                               </span>
@@ -286,7 +286,7 @@
                           <ChevronDown
                             class={cn(
                               'size-4 text-muted-foreground transition-transform duration-200',
-                              isComboboxOpen && 'rotate-180 text-primary',
+                              isComboboxOpen && 'rotate-180 text-primary-strong',
                             )}
                             aria-hidden="true"
                           />
@@ -303,7 +303,7 @@
                         <ChevronDown
                           class={cn(
                             'size-4 shrink-0 text-muted-foreground transition-transform duration-200',
-                            isComboboxOpen && 'rotate-180 text-primary',
+                            isComboboxOpen && 'rotate-180 text-primary-strong',
                           )}
                           aria-hidden="true"
                         />
@@ -387,13 +387,13 @@
                                     <span
                                       class={cn(
                                         'block text-xs font-semibold truncate',
-                                        isSelected ? 'text-primary' : 'text-foreground',
+                                        isSelected ? 'text-primary-strong' : 'text-foreground',
                                       )}
                                     >
                                       {user.name}
                                     </span>
                                     {#if isSelected}
-                                      <Check class="size-3 text-primary shrink-0" aria-hidden="true" />
+                                      <Check class="size-3 text-primary-strong shrink-0" aria-hidden="true" />
                                     {/if}
                                   </div>
                                   <span class="block text-xs text-muted-foreground truncate">
@@ -463,7 +463,7 @@
                     {CONTEXT_DETAILS[ctx].label}
                   </span>
                   {#if isSelected}
-                    <Check class="size-3.5 text-primary" aria-hidden="true" />
+                    <Check class="size-3.5 text-primary-strong" aria-hidden="true" />
                   {/if}
                 </div>
                 <span class="text-xs leading-snug text-muted-foreground">
@@ -499,7 +499,7 @@
                 <div class="flex w-full items-center justify-between">
                   <span class="text-xs font-semibold text-foreground">{r.label}</span>
                   {#if isSelected}
-                    <Check class="size-3.5 text-primary" aria-hidden="true" />
+                    <Check class="size-3.5 text-primary-strong" aria-hidden="true" />
                   {/if}
                 </div>
                 <span class="text-xs leading-snug text-muted-foreground">{r.description}</span>
@@ -510,7 +510,7 @@
           <div
             class="flex items-center gap-2 rounded-box border border-border/60 bg-muted/30 p-2.5 text-xs text-muted-foreground"
           >
-            <Info class="size-4 shrink-0 text-primary" aria-hidden="true" />
+            <Info class="size-4 shrink-0 text-primary-strong" aria-hidden="true" />
             <span>
               O cargo <strong>Super Admin</strong> é reservado e só pode ser concedido via comando de
               terminal no servidor (<code class="font-mono text-xs bg-background px-1 py-0.5 rounded-chip border border-border">npm run user:promote</code>).

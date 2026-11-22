@@ -57,7 +57,7 @@
           Não chegou? Veja a caixa de spam e confira se digitou o endereço certo.
         </p>
 
-        <a href="/login" class="text-primary text-sm font-medium underline-offset-4 hover:underline">
+        <a href="/login" class="text-primary-strong text-sm font-medium underline-offset-4 hover:underline">
           Voltar para a tela de entrada
         </a>
       {:else}
@@ -98,7 +98,7 @@
           />
         </form>
 
-        <a href="/login" class="text-primary text-sm font-medium underline-offset-4 hover:underline">
+        <a href="/login" class="text-primary-strong text-sm font-medium underline-offset-4 hover:underline">
           Voltar para a tela de entrada
         </a>
       {/if}

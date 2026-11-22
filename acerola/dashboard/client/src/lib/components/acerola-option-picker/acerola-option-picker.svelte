@@ -300,7 +300,7 @@
               /* Item de lista dentro de um balão é MIUDEZA, não controle: raio `chip`. */
               'flex w-full cursor-pointer items-center gap-2 rounded-chip min-h-11 px-3 py-2.5 text-left text-sm transition-colors',
               isSelected
-                ? 'bg-primary/10 font-semibold text-primary'
+                ? 'bg-primary/10 font-semibold text-primary-strong'
                 : 'text-foreground hover:bg-muted/60',
             )}
           >

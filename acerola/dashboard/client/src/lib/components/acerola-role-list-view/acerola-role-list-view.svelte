@@ -217,7 +217,7 @@
     <div
       class="flex items-center gap-2.5 rounded-box border border-border/80 bg-muted/30 p-3 text-xs text-muted-foreground"
     >
-      <Info class="size-4 shrink-0 text-primary" aria-hidden="true" />
+      <Info class="size-4 shrink-0 text-primary-strong" aria-hidden="true" />
       <span>
         Modo de visualização da equipe. Apenas o <strong>Super Admin</strong> possui autorização para
         conceder ou alterar cadastros de cargos internos.

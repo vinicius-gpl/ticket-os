@@ -258,13 +258,13 @@
             <!-- Métricas: Chamados e PRs -->
             <div class="mt-4 grid grid-cols-2 gap-2 border-t border-border/60 pt-3 text-xs">
               <div class="flex items-center gap-2">
-                <LifeBuoy class="size-3.5 text-primary" />
+                <LifeBuoy class="size-3.5 text-primary-strong" />
                 <span class="text-muted-foreground">
                   <strong class="text-foreground">{project.openTicketsCount}</strong> chamados
                 </span>
               </div>
               <div class="flex items-center gap-2">
-                <GitPullRequest class="size-3.5 text-primary" />
+                <GitPullRequest class="size-3.5 text-primary-strong" />
                 <span class="text-muted-foreground">
                   <strong class="text-foreground">{project.pullRequestsCount}</strong> PRs
                 </span>

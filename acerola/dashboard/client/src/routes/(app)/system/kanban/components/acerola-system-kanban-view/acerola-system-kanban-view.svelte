@@ -261,7 +261,7 @@
           <div class="flex flex-1 flex-col gap-3 min-h-32">
             {#if isDropTarget && draggedTicketId !== null}
               <div
-                class="grid h-16 place-items-center rounded-box border border-dashed border-primary bg-primary/10 text-xs font-medium text-primary animate-pulse"
+                class="grid h-16 place-items-center rounded-box border border-dashed border-primary bg-primary/10 text-xs font-medium text-primary-strong animate-pulse"
               >
                 Solte aqui para mover para {column.title}
               </div>

@@ -23,7 +23,7 @@
   <div
     class="flex w-full max-w-md flex-col items-center gap-5 rounded-surface border border-border bg-card p-8 text-center shadow-xs"
   >
-    <GitBranch class="size-10 text-primary" aria-hidden="true" />
+    <GitBranch class="size-10 text-primary-strong" aria-hidden="true" />
     <h1 class="text-xl font-semibold text-foreground">Vincule seu GitHub para acessar Sistema</h1>
     {#if state.isLoading}
       <p role="status" class="text-sm text-muted-foreground">Verificando sua vinculação…</p>

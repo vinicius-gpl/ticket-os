@@ -66,7 +66,7 @@
               href={event.url}
               target="_blank"
               rel="noreferrer"
-              class="mt-2 block break-words text-sm font-semibold text-primary underline-offset-4 hover:underline"
+              class="mt-2 block break-words text-sm font-semibold text-primary-strong underline-offset-4 hover:underline"
               >{data.type === 'all'
                 ? event.type === 'issue'
                   ? 'Issue '

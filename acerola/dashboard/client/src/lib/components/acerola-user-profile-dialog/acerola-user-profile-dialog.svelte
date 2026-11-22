@@ -83,7 +83,7 @@
       <!-- Seus Cargos por Área -->
       <div class="rounded-box border border-border bg-card p-4 space-y-3">
         <div class="flex items-center gap-2 text-sm font-semibold text-foreground">
-          <ShieldCheck class="size-4 text-primary" />
+          <ShieldCheck class="size-4 text-primary-strong" />
           <span>Seus Cargos Internos por Área</span>
         </div>
 

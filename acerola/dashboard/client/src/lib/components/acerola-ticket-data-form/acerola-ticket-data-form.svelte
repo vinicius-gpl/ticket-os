@@ -218,7 +218,7 @@
         {#each data.ticket.participantAreas as area (area)}
           <li
             class={cn(
-              'bg-primary/15 text-primary inline-flex items-center gap-1 rounded-full py-1 pr-1 pl-3 text-xs font-semibold',
+              'bg-primary/15 text-primary-strong inline-flex items-center gap-1 rounded-full py-1 pr-1 pl-3 text-xs font-semibold',
               formState?.removingAreaArea === area && 'opacity-60',
             )}
           >
@@ -251,7 +251,7 @@
             aria-label={`Adicionar ${option.label} ao chamado`}
             class={cn(
               'control-sm border-border text-muted-foreground inline-flex cursor-pointer items-center gap-1 rounded-full border border-dashed text-xs font-medium transition-colors',
-              'hover:border-primary hover:text-primary disabled:cursor-not-allowed disabled:opacity-60',
+              'hover:border-primary hover:text-primary-strong disabled:cursor-not-allowed disabled:opacity-60',
             )}
           >
             <PlusIcon class="size-3" aria-hidden="true" />

@@ -91,11 +91,11 @@
                 class="absolute -left-6 top-1 grid size-5 place-items-center rounded-full bg-card ring-2 ring-border"
               >
                 {#if event.type === 'pr' && event.status === 'merged'}
-                  <GitMerge class="size-3 text-primary" />
+                  <GitMerge class="size-3 text-primary-strong" />
                 {:else if event.type === 'pr'}
-                  <GitPullRequest class="size-3 text-primary" />
+                  <GitPullRequest class="size-3 text-primary-strong" />
                 {:else}
-                  <LifeBuoy class="size-3 text-primary" />
+                  <LifeBuoy class="size-3 text-primary-strong" />
                 {/if}
               </div>
 
@@ -131,7 +131,7 @@
                       href={event.url}
                       target="_blank"
                       rel="noreferrer"
-                      class="inline-flex items-center gap-1 font-medium text-primary hover:underline"
+                      class="inline-flex items-center gap-1 font-medium text-primary-strong hover:underline"
                     >
                       Ver no GitHub
                       <ArrowUpRight class="size-3" />

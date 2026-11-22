@@ -175,7 +175,7 @@
             <button
               {...props}
               type="button"
-              class="control-sm w-full rounded-control px-1 text-left text-xs font-medium text-primary hover:bg-primary-soft"
+              class="control-sm w-full rounded-control px-1 text-left text-xs font-medium text-primary-strong hover:bg-primary-soft"
               aria-label="Ver {count} {noun} do dia {day.dateString.split('-').reverse().join('/')}"
               onclick={() =>
                 type === 'pr'
@@ -386,7 +386,7 @@
                 <button
                   {...props}
                   type="button"
-                  class="control-lg self-start rounded-control px-3 text-xs font-medium text-primary hover:bg-primary-soft"
+                  class="control-lg self-start rounded-control px-3 text-xs font-medium text-primary-strong hover:bg-primary-soft"
                   onclick={actions.onClearFilters}>Limpar filtros</button
                 >
               {/snippet}</Tooltip.Trigger
@@ -799,7 +799,7 @@
                             <button
                               {...props}
                               type="button"
-                              class="h-full w-full overflow-hidden rounded-box border border-primary/20 bg-primary-soft p-2 text-left text-xs text-primary hover:border-primary/50"
+                              class="h-full w-full overflow-hidden rounded-box border border-primary/20 bg-primary-soft p-2 text-left text-xs text-primary-strong hover:border-primary/50"
                               aria-label="Ver {group.events
                                 .length} atividades próximas das {new Date(
                                 group.events[0]!.eventDate,
@@ -922,7 +922,7 @@
                           class="flex min-w-0 items-center gap-3 rounded-box border border-border bg-muted/20 p-3 transition hover:border-primary/40 hover:bg-muted/40"
                         >
                           <span
-                            class="grid size-8 shrink-0 place-items-center rounded-full bg-primary-soft text-primary"
+                            class="grid size-8 shrink-0 place-items-center rounded-full bg-primary-soft text-primary-strong"
                           >
                             {#if event.type === 'issue'}
                               <LifeBuoy class="size-4" />

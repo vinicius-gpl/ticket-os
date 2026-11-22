@@ -230,7 +230,7 @@
 
           {#if ticket.screenshotUrl}
             <a
-              class="control-sm inline-flex w-fit items-center gap-1.5 rounded-control border border-border bg-card text-xs font-semibold text-primary shadow-xs transition-colors hover:bg-ink-100"
+              class="control-sm inline-flex w-fit items-center gap-1.5 rounded-control border border-border bg-card text-xs font-semibold text-primary-strong shadow-xs transition-colors hover:bg-ink-100"
               href={ticket.screenshotUrl}
               target="_blank"
               rel="noopener"

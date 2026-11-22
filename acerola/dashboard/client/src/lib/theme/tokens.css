@@ -26,8 +26,8 @@
  * a barra lateral ficou branca com o azul já definido — a classe `bg-sidebar` nunca chegou
  * a ser gerada, e `background` sem regra é transparente.
  *
- * A paleta é o Catppuccin, a mesma do agente (`acerola/agent`). Trocar a identidade de um
- * MVP é trocar os valores desta seção — e só desta seção.
+ * A paleta é a Prata Lunar do kit de marca do ticket-os (brand-maker, `design/tokens.css` do
+ * kit). Trocar a identidade de um MVP é trocar os valores desta seção — e só desta seção.
  */
 
 /**
@@ -38,72 +38,73 @@
 @custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
 
 /* ==========================================================================
-   A PALETA — Catppuccin, a mesma do agente.
+   A PALETA — Prata Lunar, neutros Tinta azulada (kit de marca do ticket-os).
 
-   Os valores vêm de `acerola/agent/svelte/src/theme/catppuccin.css`, sem alteração:
-   Latte no tema claro, Mocha no escuro. Os dois sistemas passaram a ser a mesma
-   identidade visual, e copiar os valores (em vez de inventar equivalentes) é o que
-   garante que continuem iguais quando um dos dois mudar.
+   Os valores vêm do kit sem alteração. Os nomes que o kit não tem (`crust`, `mantle`,
+   `base`, `surface`, `subtext`, `secondary`, `accent`, `input`) apontam para o tom do kit
+   que faz o mesmo papel — nenhuma cor inventada fora dele.
    ========================================================================== */
 :root {
   /* Tons de fundo, do mais fundo ao mais alto. `surface` é o que sobe acima do fundo. */
-  --crust: #e2e8f0;
-  --mantle: #f1f5f9;
-  --base: #f8fafc;
-  --surface: #e2e8f0;
+  --crust: #dfe2ea;
+  --mantle: #eceef4;
+  --base: #f5f6fa;
+  --surface: #dfe2ea;
 
-  /* O agente não tem um terceiro tom de texto: só `foreground` e `muted-foreground`. Em vez
+  /* O kit não tem um terceiro tom de texto: só `foreground` e `muted-foreground`. Em vez
      de inventar um degrau que não existe na fonte, `subtext` aponta pro mesmo valor de
-     `muted-foreground` — é a cópia fiel, não uma aproximação. */
-  --subtext: #64748b;
+     `muted-foreground`. */
+  --subtext: #5b6276;
 
   --radius: 0.625rem;
 
   /* ---- Semântica da PÁGINA ---- */
-  --background: #f8fafc;
-  --foreground: #0f172a;
-  --card: #ffffff;
-  --card-foreground: #0f172a;
-  --popover: #ffffff;
-  --popover-foreground: #0f172a;
-  --primary: #7c3aed;
-  --primary-foreground: #ffffff;
-  --secondary: #f1f5f9;
-  --secondary-foreground: #0f172a;
-  --muted: #f1f5f9;
-  --muted-foreground: #64748b;
-  --accent: #f1f5f9;
-  --accent-foreground: #0f172a;
-  --accent-hero: #ea76cb;
-  --accent-hero-foreground: var(--primary-foreground);
-  --destructive: #e11d48;
-  --destructive-foreground: var(--primary-foreground);
-  --border: #e2e8f0;
-  --input: #e2e8f0;
-  --ring: #7c3aed;
+  --background: #f5f6fa;
+  --foreground: #11111a;
+  --card: #fbfbfd;
+  --card-foreground: #11111a;
+  --popover: #fbfbfd;
+  --popover-foreground: #11111a;
+  /* A prata é clara demais para texto no tema claro: `primary` é só a cor CHEIA (botão,
+     selo); texto e link na cor da marca usam `primary-strong`, que passa no contraste. */
+  --primary: #b4bfca;
+  --primary-foreground: #11111a;
+  --primary-strong: #5f7386;
+  --secondary: #eceef4;
+  --secondary-foreground: #11111a;
+  --muted: #eceef4;
+  --muted-foreground: #5b6276;
+  --accent: #eceef4;
+  --accent-foreground: #11111a;
+  --accent-hero: #f1b441;
+  --accent-hero-foreground: #11111a;
+  --accent-strong: #94640b;
+  --tertiary: #82ccb5;
+  --tertiary-strong: #337d66;
+  --destructive: #bb1e1e;
+  --destructive-foreground: #f5f6fa;
+  --border: #dfe2ea;
+  --input: #dfe2ea;
+  --ring: #b4bfca;
 
-  /* Os tons de ESTADO. `danger` é o `destructive` acima; estes três não existem na paleta
-     do agente, então nascem aqui. No claro são os tons 700 (texto pequeno legível sobre
-     branco); no escuro, os 400.
-
-     `-soft` é o fundo SÓLIDO do tom (selo, cartão de indicador): os tons 100 no claro e 950
-     no escuro. Sólido de propósito — com opacidade, o cartão de indicador mudava de cor
+  /* Os tons de ESTADO, do kit. `-soft` é o fundo SÓLIDO do tom (selo, cartão de
+     indicador). Sólido de propósito — com opacidade, o cartão de indicador mudava de cor
      conforme o que estivesse atrás dele. */
-  --success: #047857;
-  --success-soft: #d1fae5;
-  --warning: #b45309;
-  --warning-soft: #fef3c7;
+  --success: #137337;
+  --success-soft: #d2e5da;
+  --warning: #a14a08;
+  --warning-soft: #eeddd1;
   --info: #1d4ed8;
-  --info-soft: #dbeafe;
-  --destructive-soft: #ffe4e6;
-  --primary-soft: #ede9fe;
+  --info-soft: #d3dcf6;
+  --destructive-soft: #f5d5d6;
+  --primary-soft: #eef0f4;
 
   /* As cores de categoria dos gráficos. Ver utils/chart-slice.ts. */
-  --chart-1: #e11d48;
-  --chart-2: #f97316;
-  --chart-3: #eab308;
-  --chart-4: #10b981;
-  --chart-5: #0ea5e9;
+  --chart-1: #8194a6;
+  --chart-2: #c4850e;
+  --chart-3: #42a183;
+  --chart-4: #1d4ed8;
+  --chart-5: #dc2626;
 
   /**
    * ---- Semântica da BARRA LATERAL ----
@@ -112,14 +113,14 @@
    * identidade; a identidade agora vem da paleta inteira, e uma barra que ignora o tema
    * seria a única parte da tela a ignorá-lo.
    */
-  --sidebar: #f8fafc;
-  --sidebar-foreground: #0f172a;
-  --sidebar-primary: #7c3aed;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #f1f5f9;
-  --sidebar-accent-foreground: #0f172a;
-  --sidebar-border: #e2e8f0;
-  --sidebar-ring: #7c3aed;
+  --sidebar: #eff1f6;
+  --sidebar-foreground: #11111a;
+  --sidebar-primary: #b4bfca;
+  --sidebar-primary-foreground: #11111a;
+  --sidebar-accent: #eceef4;
+  --sidebar-accent-foreground: #11111a;
+  --sidebar-border: #dfe2ea;
+  --sidebar-ring: #b4bfca;
 
   /**
    * ---- Apelidos da paleta antiga ----
@@ -129,7 +130,7 @@
    * passaram a acompanhar o tema sem precisar ser reescritas uma a uma.
    *
    * A escala `brand-*` foi embora: quem a usava agora usa `primary`, porque os pares que
-   * fixavam `text-white` sobre azul ficariam ilegíveis sobre o roxo do Catppuccin.
+   * fixavam `text-white` sobre azul ficariam ilegíveis sobre outra cor de marca.
    */
   --ink-900: var(--foreground);
   --ink-700: var(--subtext);
@@ -158,43 +159,49 @@
   --card-foreground: #f1f5f9;
   --popover: #181824;
   --popover-foreground: #f1f5f9;
-  --primary: #cba6f7;
+  --primary: #cfd6dd;
   --primary-foreground: #11111a;
+  --primary-strong: #cfd6dd;
   --secondary: #222332;
   --secondary-foreground: #f1f5f9;
   --muted: #1e1e2d;
   --muted-foreground: #94a3b8;
   --accent: #222332;
   --accent-foreground: #f1f5f9;
-  --accent-hero: #f5c2e7;
-  --destructive: #f38ba8;
+  --accent-hero: #f2b84b;
+  --accent-hero-foreground: #11111a;
+  --accent-strong: #f2b84b;
+  --tertiary: #9fd8c6;
+  --tertiary-strong: #9fd8c6;
+  --destructive: #f87171;
+  --destructive-foreground: #11111a;
   --border: #2b2c3d;
   --input: #222332;
-  --ring: #cba6f7;
+  --ring: #cfd6dd;
 
-  --success: #34d399;
-  --success-soft: #022c22;
+  --success: #4ade80;
+  --success-soft: #203833;
   --warning: #fbbf24;
-  --warning-soft: #451a03;
+  --warning-soft: #3c3324;
   --info: #60a5fa;
-  --info-soft: #172554;
-  --destructive-soft: #4c0519;
-  --primary-soft: #2e1065;
+  --info-soft: #242f46;
+  --destructive-soft: #3c2630;
+  --primary-soft: #353642;
 
-  --chart-1: #f38ba8;
-  --chart-2: #fab387;
-  --chart-3: #f9e2af;
-  --chart-4: #a6e3a1;
-  --chart-5: #74c7ec;
+  --chart-1: #cfd6dd;
+  --chart-2: #f2b84b;
+  --chart-3: #9fd8c6;
+  --chart-4: #60a5fa;
+  --chart-5: #f87171;
 
   --sidebar: #13131c;
   --sidebar-foreground: #f1f5f9;
-  --sidebar-primary: #cba6f7;
+  --sidebar-primary: #cfd6dd;
   --sidebar-primary-foreground: #11111a;
   --sidebar-accent: #222332;
   --sidebar-accent-foreground: #f1f5f9;
   --sidebar-border: #2b2c3d;
-  --sidebar-ring: #cba6f7;
+  --sidebar-ring: #cfd6dd;
 
   color-scheme: dark;
 }
@@ -224,6 +231,7 @@
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-primary-strong: var(--primary-strong);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
@@ -232,6 +240,9 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-accent-hero: var(--accent-hero);
   --color-accent-hero-foreground: var(--accent-hero-foreground);
+  --color-accent-strong: var(--accent-strong);
+  --color-tertiary: var(--tertiary);
+  --color-tertiary-strong: var(--tertiary-strong);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);

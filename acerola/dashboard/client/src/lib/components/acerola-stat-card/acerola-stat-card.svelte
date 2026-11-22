@@ -43,7 +43,7 @@
   };
 
   const TONE_LABEL: Record<StatCardTone, string> = {
-    brand: 'text-primary',
+    brand: 'text-primary-strong',
     neutral: 'text-ink-500',
     success: 'text-success',
     warning: 'text-warning',

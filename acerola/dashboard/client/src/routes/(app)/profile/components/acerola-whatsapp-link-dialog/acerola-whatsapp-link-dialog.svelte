@@ -66,7 +66,7 @@
       <DialogHeader class="gap-1.5">
         <div class="flex items-center gap-2.5">
           <span
-            class="bg-primary/10 text-primary rounded-chip flex size-7 shrink-0 items-center justify-center"
+            class="bg-primary/10 text-primary-strong rounded-chip flex size-7 shrink-0 items-center justify-center"
           >
             <QrCode class="size-4" aria-hidden="true" />
           </span>

@@ -220,7 +220,7 @@
         target="_blank"
         rel="noopener"
       >
-        <GitPullRequest class="size-3 text-primary" aria-hidden="true" />
+        <GitPullRequest class="size-3 text-primary-strong" aria-hidden="true" />
         <span>Issue #{ticket.githubIssueNumber ?? ''}</span>
         <ExternalLink class="size-3 text-muted-foreground" aria-hidden="true" />
       </a>
@@ -254,7 +254,7 @@
 
         {#if ticket.screenshotUrl}
           <a
-            class="control-sm rounded-control border-border bg-card text-primary hover:bg-ink-100 inline-flex w-fit items-center gap-1.5 border text-xs font-semibold shadow-xs transition-colors"
+            class="control-sm rounded-control border-border bg-card text-primary-strong hover:bg-ink-100 inline-flex w-fit items-center gap-1.5 border text-xs font-semibold shadow-xs transition-colors"
             href={ticket.screenshotUrl}
             target="_blank"
             rel="noopener"

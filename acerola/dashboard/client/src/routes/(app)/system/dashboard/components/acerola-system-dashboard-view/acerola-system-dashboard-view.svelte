@@ -89,7 +89,7 @@
           <span class="text-xs font-semibold uppercase tracking-wider text-muted-foreground"
             >Chamados no Mês</span
           >
-          <div class="grid size-8 place-items-center rounded-control bg-primary/10 text-primary">
+          <div class="grid size-8 place-items-center rounded-control bg-primary/10 text-primary-strong">
             <LifeBuoy class="size-4" />
           </div>
         </div>
@@ -113,7 +113,7 @@
           <span class="text-xs font-semibold uppercase tracking-wider text-muted-foreground"
             >PRs no Mês</span
           >
-          <div class="grid size-8 place-items-center rounded-control bg-primary/10 text-primary">
+          <div class="grid size-8 place-items-center rounded-control bg-primary/10 text-primary-strong">
             <GitPullRequest class="size-4" />
           </div>
         </div>
@@ -137,7 +137,7 @@
           <span class="text-xs font-semibold uppercase tracking-wider text-muted-foreground"
             >Sistemas Ativos</span
           >
-          <div class="grid size-8 place-items-center rounded-control bg-primary/10 text-primary">
+          <div class="grid size-8 place-items-center rounded-control bg-primary/10 text-primary-strong">
             <Code2 class="size-4" />
           </div>
         </div>
@@ -149,7 +149,7 @@
         </div>
         <div class="mt-2 flex items-center justify-between text-xs text-muted-foreground">
           <span>{s.projectsSummary.maintenance} em manutenção</span>
-          <button class="font-medium text-primary hover:underline" onclick={actions.onOpenProjects}
+          <button class="font-medium text-primary-strong hover:underline" onclick={actions.onOpenProjects}
             >Ver lista</button
           >
         </div>
@@ -163,7 +163,7 @@
           <span class="text-xs font-semibold uppercase tracking-wider text-muted-foreground"
             >Tempo de Resolução</span
           >
-          <div class="grid size-8 place-items-center rounded-control bg-primary/10 text-primary">
+          <div class="grid size-8 place-items-center rounded-control bg-primary/10 text-primary-strong">
             <CheckCircle2 class="size-4" />
           </div>
         </div>
@@ -308,9 +308,9 @@
                   class="grid size-8 shrink-0 place-items-center rounded-control bg-muted text-muted-foreground"
                 >
                   {#if event.type === 'pr'}
-                    <GitPullRequest class="size-4 text-primary" />
+                    <GitPullRequest class="size-4 text-primary-strong" />
                   {:else}
-                    <LifeBuoy class="size-4 text-primary" />
+                    <LifeBuoy class="size-4 text-primary-strong" />
                   {/if}
                 </div>
                 <div>
@@ -337,7 +337,7 @@
                   href={event.url}
                   target="_blank"
                   rel="noreferrer"
-                  class="inline-flex items-center gap-1 text-xs font-medium text-primary hover:underline"
+                  class="inline-flex items-center gap-1 text-xs font-medium text-primary-strong hover:underline"
                 >
                   Abrir no GitHub
                   <ArrowUpRight class="size-3" />
