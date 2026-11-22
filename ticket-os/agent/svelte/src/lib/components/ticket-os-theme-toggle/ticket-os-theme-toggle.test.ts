@@ -9,7 +9,7 @@ beforeEach(() => {
 describe('TicketOsThemeToggle', () => {
 	// feliz
 	it('toggles document theme attribute when clicked', async () => {
-		// Ao clicar no botão, o tema raiz do html deve ser alternado (ex: mocha <-> latte)
+		// Ao clicar no botão, o tema raiz do html deve ser alternado (escuro <-> claro)
 		const { getByRole } = render(TicketOsThemeToggle, { props: {} });
 		const button = getByRole('button');
 

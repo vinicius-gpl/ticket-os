@@ -1,4 +1,10 @@
-# ticket-os
+<p align="center">
+  <img src="ticket-os/dashboard/client/static/favicon.svg" alt="" width="72">
+</p>
+
+<h1 align="center">ticket-os</h1>
+
+<p align="center"><strong>O sistema operacional da sua TI.</strong></p>
 
 <p align="center">
   <a href="docs/brag/brag.mp4">
@@ -38,43 +44,28 @@ vencidas, peças sem estoque e o que entrou, saiu e foi feito nos últimos 7, 30
 <table>
   <tr>
     <td width="50%"><img src="docs/prints/infra-chamados.jpg" alt="Chamados da Infraestrutura"></td>
-    <td width="50%"><img src="docs/prints/infra-agente-windows.jpg" alt="Downloads do agente Windows"></td>
+    <td width="50%"><img src="docs/prints/infra-inventario.jpg" alt="Inventário da Infraestrutura"></td>
   </tr>
   <tr>
     <td align="center"><sub>Chamados</sub></td>
-    <td align="center"><sub>Agente Windows</sub></td>
+    <td align="center"><sub>Inventário</sub></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="docs/prints/infra-inteligencia.jpg" alt="Inteligência da Infraestrutura"></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="center"><sub>Inteligência</sub></td>
+    <td></td>
   </tr>
 </table>
 
 ### Sistema
 
-<p align="center">
-  <img src="docs/prints/sistema-kanban.jpg" alt="Kanban de Sistema" width="85%">
-</p>
-
 Os chamados dos softwares da empresa andam num **Kanban** — da triagem ao concluído, arrastando
 os cards e rotulando por prioridade. Cada sistema é um repositório do GitHub: o **Cronograma**
 junta PRs mergeados, issues fechadas e agendamentos, com a produtividade de cada pessoa no
 período.
-
-<table>
-  <tr>
-    <td width="50%"><img src="docs/prints/sistema-cronograma.jpg" alt="Cronograma de Sistema"></td>
-    <td width="50%"><img src="docs/prints/sistema-projetos.jpg" alt="Sistemas e projetos"></td>
-  </tr>
-  <tr>
-    <td align="center"><sub>Cronograma</sub></td>
-    <td align="center"><sub>Sistemas e projetos sincronizados com o GitHub</sub></td>
-  </tr>
-  <tr>
-    <td width="50%"><img src="docs/prints/sistema-chamados.jpg" alt="Chamados de Sistema"></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td align="center"><sub>Chamados de Sistema</sub></td>
-    <td></td>
-  </tr>
-</table>
 
 ### Manutenção
 

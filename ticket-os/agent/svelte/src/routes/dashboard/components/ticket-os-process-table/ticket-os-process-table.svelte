@@ -133,7 +133,7 @@
 							>
 								<span>{column.label}</span>
 								{#if sortColumn === column.key}
-									<span class="text-primary font-mono text-xs">
+									<span class="text-primary-strong font-mono text-xs">
 										{sortDescending ? '↓' : '↑'}
 									</span>
 								{/if}
@@ -164,7 +164,7 @@
 					<tr class={cn('hover:bg-muted/40 group transition-colors', index === 0 && 'bg-muted/15')}>
 						<td class="px-4 py-2.5">
 							<button
-								class="text-foreground hover:text-primary flex cursor-pointer items-center gap-2 text-left font-medium transition-colors"
+								class="text-foreground hover:text-primary-strong flex cursor-pointer items-center gap-2 text-left font-medium transition-colors"
 								onclick={() => toggleExpanded(group.name)}
 								aria-expanded={isExpanded}
 							>

@@ -11,7 +11,7 @@
 	events={{ onClick: theme.toggle }}
 	ui={{ variant: 'ghost', size: 'icon', title: 'Alternar tema' }}
 >
-	{#if theme.value === 'catppuccin-mocha'}
+	{#if theme.value === 'dark'}
 		<MoonIcon size={16} />
 	{:else}
 		<SunIcon size={16} />

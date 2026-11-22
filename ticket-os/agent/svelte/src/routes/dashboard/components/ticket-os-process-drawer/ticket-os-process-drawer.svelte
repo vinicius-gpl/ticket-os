@@ -290,11 +290,11 @@
 		<div class="border-border/70 bg-card shrink-0 border-b p-4">
 			<div class="flex items-center justify-between">
 				<div class="flex items-center gap-2">
-					<LayersIcon size={16} class="text-primary" />
+					<LayersIcon size={16} class="text-primary-strong" />
 					<h2 class="text-foreground text-sm font-semibold tracking-tight">Fila de Processos</h2>
 				</div>
 				<span
-					class="bg-primary/10 border-primary/20 text-primary rounded-full border px-2.5 py-0.5 text-xs font-semibold tabular-nums"
+					class="bg-primary/10 border-primary/20 text-primary-strong rounded-full border px-2.5 py-0.5 text-xs font-semibold tabular-nums"
 				>
 					{filteredProcesses.length} ativos
 				</span>
@@ -596,7 +596,7 @@
 						<button
 							type="button"
 							onclick={() => (isPidDrawerOpen = true)}
-							class="text-primary hover:text-primary/90 bg-primary/10 hover:bg-primary/20 border-primary/20 rounded-control inline-flex cursor-pointer items-center gap-1.5 border px-2.5 py-1 text-xs font-medium shadow-xs transition-all"
+							class="text-primary-strong hover:text-primary-strong/90 bg-primary/10 hover:bg-primary/20 border-primary/20 rounded-control inline-flex cursor-pointer items-center gap-1.5 border px-2.5 py-1 text-xs font-medium shadow-xs transition-all"
 						>
 							<Maximize2Icon size={12} />
 							<span>Expandir Gaveta ({selectedProcess.instances.length})</span>
@@ -746,7 +746,7 @@
 						<div class="flex flex-wrap items-center justify-between gap-3">
 							<div class="flex items-center gap-2.5">
 								<span
-									class="bg-primary/10 border-primary/20 text-primary rounded-chip grid h-7 w-7 place-items-center border font-mono text-xs font-bold"
+									class="bg-primary/10 border-primary/20 text-primary-strong rounded-chip grid h-7 w-7 place-items-center border font-mono text-xs font-bold"
 								>
 									{filteredInstances.length}
 								</span>

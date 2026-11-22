@@ -2,18 +2,13 @@
 
 ## Origem
 
-Os quatro SVGs de origem estão em `icons/` (cópia de `Documents/ticket-os/icons/`):
+A origem é um SVG só, `icons/ticket-os.svg`: o selo padrão dos apps (quadrado na prata da marca,
+monograma TO em blocos e a faixa âmbar) — o mesmo `favicon.svg` do dashboard. É ele que vira a
+bandeja, o favicon do WebView, o cabeçalho da popup e do dashboard, o `.exe`, o instalador e o
+`build/appicon.png`.
 
-- `ic_launcher_foreground.svg` — só a fruta, sem fundo, 1254×1254. **É o único usado em todo o
-  projeto** — bandeja, favicon do WebView, cabeçalho da popup e do dashboard, `build/appicon.png`.
-- `ic_launcher.svg` — a arte completa, fundo + fruta. **Não é usada em lugar nenhum, de
-  propósito**: por mais que um fundo fixo pareça inofensivo dentro da própria interface, a decisão
-  do projeto é sempre usar só a fruta, sem exceção — inclusive porque um fundo sólido embutido no
-  `.ico` da bandeja brigaria com o tema do usuário (escuro, claro, cor de destaque) em vez de se
-  misturar a ele.
-- `ic_launcher_background.svg` — o fundo sólido isolado. Mantido só como peça de referência.
-- `ic_launcher_monochrome.svg` — a mesma silhueta em preto sólido, sem cor. Não usada nesta fase,
-  mantida para a variante adaptável de ícone do Windows 11 (`roadmap.md`).
+O selo é quadrado e cheio até a borda, de propósito: lido a 16×16 na bandeja, ele precisa ocupar o
+quadro inteiro para ter o mesmo peso dos ícones dos outros apps.
 
 ## Por que converter para .ico
 
@@ -47,28 +42,19 @@ de rasterização de SVG que ele nunca usa em produção.
 
 ```bash
 cd ticket-os/agent
-go run ./src-go/cmd/icongen -src icons/ic_launcher_foreground.svg -out icons/tray.ico -sizes 16,32,48,256 -zoom 1.44
+go run ./src-go/cmd/icongen -src icons/ticket-os.svg -out icons/tray.ico -sizes 16,32,48,256
 cp icons/tray.ico src-go/lib/assets/tray.ico     # cópia embutida no binário — ver architecture.md
 cp icons/tray.ico build/windows/icon.ico     # ícone do .exe e do instalador (convenção do Wails)
 
-go run ./src-go/cmd/icongen -src icons/ic_launcher_foreground.svg -out icons/tray.png -sizes 64 -zoom 1.44
+go run ./src-go/cmd/icongen -src icons/ticket-os.svg -out icons/tray.png -sizes 64
 cp icons/tray.png src-go/lib/assets/tray.png     # bandeja fora do Windows — o systray de lá só lê PNG
 
-go run ./src-go/cmd/icongen -src icons/ic_launcher_foreground.svg -out build/appicon.png -sizes 512 -zoom 1.44
-cp icons/ic_launcher_foreground.svg svelte/public/favicon.svg
+go run ./src-go/cmd/icongen -src icons/ticket-os.svg -out build/appicon.png -sizes 512
+cp icons/ticket-os.svg svelte/public/favicon.svg
 ```
 
-**`-zoom 1.44`**: a arte de origem tem uma margem de respiro ao redor da fruta (comum em ícones
-pensados como "foreground" de ícone adaptativo — o sistema operacional normalmente aplica uma
-máscara e escala por cima). Em 512px essa margem passa despercebida, mas reduzida pra 16×16 na
-bandeja do Windows ela faz a fruta parecer pequena dentro do quadro, perto de ícones de outros
-apps que preenchem o espaço todo. `-zoom` desenha o SVG maior que o quadro e centralizado,
-cortando essa margem nas bordas — implementado em `rasterize()` (`icongen/main.go`) ajustando o
-retângulo de destino do `oksvg` pra ficar maior que o canvas final, então parte do desenho cai
-fora e é naturalmente recortada pelo tamanho do `image.RGBA`. Começou em 1.2 (+20%); depois de ver
-o ícone da bandeja de perto, ainda parecia pequeno perto dos outros apps, então foi pra 1.44
-(mais +20% em cima do 1.2). Usamos o mesmo zoom em todo lugar (bandeja e `appicon.png`) por
-consistência — é a mesma arte, o mesmo recorte, só o tamanho final muda.
+Sem `-zoom`: o selo já é desenhado até a borda do quadro, não tem margem para cortar. O `-zoom`
+continua no `icongen` para uma arte de origem que venha com respiro em volta.
 
 Tamanhos incluídos no `.ico` da bandeja: **16×16 e 32×32** (os dois exigidos, usados em telas
 normal e HiDPI) mais **48×48 e 256×256** (tamanhos padrão do Windows para o Explorer e a caixa
