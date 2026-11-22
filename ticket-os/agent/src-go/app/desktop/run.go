@@ -57,7 +57,7 @@ func Run(assets fs.FS, app *App, binding interface{}) {
 		Frameless:         true,
 		StartHidden:       true,
 		HideWindowOnClose: true,
-		BackgroundColour:  &options.RGBA{R: 30, G: 30, B: 46, A: 1}, // catppuccin mocha --base
+		BackgroundColour:  &options.RGBA{R: 17, G: 17, B: 26, A: 1}, // --background do tema escuro (palette.css)
 		AssetServer:       &assetserver.Options{Assets: assets},
 		OnStartup:         agentApp.startup,
 		OnDomReady:        agentApp.domReady,

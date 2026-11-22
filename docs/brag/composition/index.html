@@ -17,14 +17,14 @@
         width: 1920px;
         height: 1080px;
         overflow: hidden;
-        background: #11111b;
+        background: #11111a;
       }
 
       #root {
         width: 100%;
         height: 100%;
         position: relative;
-        background: #11111b;
+        background: #11111a;
         font-family: Montserrat, sans-serif;
       }
 
@@ -51,8 +51,16 @@
         font-weight: 900;
         font-size: 156px;
         letter-spacing: -0.04em;
-        color: #cdd6f4;
+        color: #f1f5f9;
         line-height: 1;
+      }
+
+      /* a logo TO em cima do nome: mesmo selo do favicon, quadrado e sem arredondar */
+      .brand-logo {
+        display: block;
+        width: 128px;
+        height: 128px;
+        margin-bottom: 40px;
       }
 
       .subline {
@@ -62,7 +70,7 @@
         font-weight: 700;
         font-size: 32px;
         letter-spacing: 0.14em;
-        color: #cba6f7;
+        color: #cfd6dd;
         text-transform: uppercase;
       }
 
@@ -73,7 +81,7 @@
         font-weight: 700;
         font-size: 30px;
         letter-spacing: 0.14em;
-        color: #cba6f7;
+        color: #cfd6dd;
         text-transform: uppercase;
       }
 
@@ -82,9 +90,9 @@
         display: block;
         border-radius: 22px;
         overflow: hidden;
-        border: 1px solid rgba(205, 214, 244, 0.08);
+        border: 1px solid rgba(241, 245, 249, 0.08);
         box-shadow: 0 40px 90px rgba(0, 0, 0, 0.55);
-        background: #181825;
+        background: #181824;
       }
 
       .card img {
@@ -127,13 +135,13 @@
         margin-bottom: 40px;
         padding: 12px 28px;
         border-radius: 999px;
-        background: rgba(203, 166, 247, 0.12);
-        border: 1px solid rgba(203, 166, 247, 0.45);
+        background: rgba(207, 214, 221, 0.12);
+        border: 1px solid rgba(207, 214, 221, 0.45);
         font-family: "JetBrains Mono", monospace;
         font-weight: 700;
         font-size: 24px;
         letter-spacing: 0.12em;
-        color: #cba6f7;
+        color: #cfd6dd;
         text-transform: uppercase;
       }
 
@@ -143,7 +151,7 @@
         font-family: Montserrat, sans-serif;
         font-weight: 700;
         font-size: 40px;
-        color: #cdd6f4;
+        color: #f1f5f9;
         text-align: center;
       }
 
@@ -188,12 +196,12 @@
         font-weight: 700;
         font-size: 36px;
         line-height: 1.35;
-        color: #cdd6f4;
+        color: #f1f5f9;
       }
 
       .hero-caption em {
         font-style: normal;
-        color: #f5c2e7;
+        color: #f2b84b;
       }
 
       /* --- cena 5: os 3 fatos --- */
@@ -220,8 +228,8 @@
         width: 84px;
         height: 84px;
         border-radius: 999px;
-        background: rgba(245, 194, 231, 0.12);
-        border: 1px solid rgba(245, 194, 231, 0.4);
+        background: rgba(242, 184, 75, 0.12);
+        border: 1px solid rgba(242, 184, 75, 0.4);
       }
 
       .fact-icon svg {
@@ -237,14 +245,14 @@
         font-size: 28px;
         line-height: 1.35;
         letter-spacing: 0.04em;
-        color: #cdd6f4;
+        color: #f1f5f9;
       }
     </style>
   </head>
   <body>
     <div
       id="root"
-      data-composition-id="ticket-os-ticket-brag-ptbr"
+      data-composition-id="ticket-os-brag-ptbr"
       data-start="0"
       data-duration="23.5"
       data-width="1920"
@@ -253,8 +261,9 @@
       <!-- ================= CENA 1 — GANCHO — 0s a 3.1s (visível até 2.5s) ================= -->
       <div id="s1" class="clip transparent" data-start="0" data-duration="3.1" data-track-index="1">
         <div id="s1-inner" class="scene">
+          <img id="s1-logo" class="brand-logo" src="assets/images/logo.svg" alt="" />
           <span id="s1-word" class="wordmark">ticket-os</span>
-          <span id="s1-sub" class="subline">A TI da empresa num lugar só.</span>
+          <span id="s1-sub" class="subline">O sistema operacional da sua TI.</span>
         </div>
       </div>
 
@@ -282,11 +291,11 @@
 
           <!-- sub-beat 02 — kanban (relativo 2.75s a 5.5s), cobre o beat anterior -->
           <div id="s3-board" class="flow-beat" data-layout-allow-overlap>
-            <span class="step-chip">02 — Kanban</span>
+            <span class="step-chip">02 — Inventário</span>
             <div id="s3-board-card" class="card card-flow">
-              <img id="s3-board-img" data-layout-allow-overflow src="assets/images/sistema-kanban.jpg" alt="" />
+              <img id="s3-board-img" data-layout-allow-overflow src="assets/images/infra-inventario.jpg" alt="" />
             </div>
-            <span class="step-line">Da triagem ao concluído.</span>
+            <span class="step-line">Cada máquina, com a saúde dela.</span>
           </div>
         </div>
       </div>
@@ -295,13 +304,13 @@
       <div id="s4" class="clip transparent" data-start="10.9" data-duration="6.2" data-track-index="4">
         <div id="s4-inner" class="hero-frame">
           <div id="s4-back" class="card hero-back">
-            <img src="assets/images/sistema-projetos.jpg" alt="" />
+            <img src="assets/images/manutencao-inventario.jpg" alt="" />
           </div>
           <div id="s4-front" class="card hero-front">
-            <img id="s4-front-img" data-layout-allow-overflow src="assets/images/sistema-cronograma.jpg" alt="" />
+            <img id="s4-front-img" data-layout-allow-overflow src="assets/images/infra-inteligencia.jpg" alt="" />
           </div>
           <div class="hero-caption">
-            <span id="s4-caption">Cada sistema ligado ao <em>GitHub</em>: PRs, issues e chamados no mesmo cronograma.</span>
+            <span id="s4-caption">O agente mede cada máquina e a <em>Inteligência</em> aponta quem precisa de upgrade.</span>
           </div>
         </div>
       </div>
@@ -312,19 +321,19 @@
           <div class="facts-row">
             <div id="s5-fact-1" class="fact">
               <span class="fact-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#f5c2e7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6l7-3z"></path><path d="M9 12l2 2 4-4"></path></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="#f2b84b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6l7-3z"></path><path d="M9 12l2 2 4-4"></path></svg>
               </span>
               <span class="fact-label">Acesso por módulo</span>
             </div>
             <div id="s5-fact-2" class="fact">
               <span class="fact-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#f5c2e7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.34-5.66"></path><path d="M20 4v4h-4"></path><path d="M12 8v5l3 2"></path></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="#f2b84b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.34-5.66"></path><path d="M20 4v4h-4"></path><path d="M12 8v5l3 2"></path></svg>
               </span>
               <span class="fact-label">Agente Windows com auto-update</span>
             </div>
             <div id="s5-fact-3" class="fact">
               <span class="fact-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#f5c2e7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5z"></path><path d="M14 3v5h5"></path><path d="M9 13h6M9 17h6"></path></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="#f2b84b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5z"></path><path d="M14 3v5h5"></path><path d="M9 13h6M9 17h6"></path></svg>
               </span>
               <span class="fact-label">Relatórios em Excel, Word e PDF</span>
             </div>
@@ -335,6 +344,7 @@
       <!-- ================= CENA 6 — DESFECHO — 21.0s a 23.5s ================= -->
       <div id="s6" class="clip transparent" data-start="21.0" data-duration="2.5" data-track-index="6">
         <div id="s6-inner" class="scene" data-layout-allow-overlap>
+          <img class="brand-logo" src="assets/images/logo.svg" alt="" />
           <span class="wordmark">ticket-os</span>
           <span class="subline">Infra. Sistema. Manutenção.</span>
         </div>
@@ -372,58 +382,60 @@
       var tl = gsap.timeline({ paused: true });
 
       // ---------- cena 1: gancho ----------
-      tl.fromTo("#s1-word", { opacity: 0, y: 16, scale: 0.985 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "power2.out" }, 0);
+      tl.fromTo("#s1-logo", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.5, ease: "power2.out" }, 0);
+      tl.fromTo("#s1-word", { opacity: 0, y: 16, scale: 0.985 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "power2.out" }, 0.1);
       tl.fromTo("#s1-sub", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }, 0.35);
 
       // ---------- cena 1 → cena 2: crossfade real (saída e entrada no mesmo instante T) ----------
-      tl.to("#s1-inner", { opacity: 0, duration: 0.6, ease: "sine.inOut" }, 2.5);
-      tl.fromTo("#s2-inner", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "sine.inOut" }, 2.5);
-      tl.fromTo("#s2-card", { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 2.62);
+      tl.to("#s1-inner", { opacity: 0, duration: 0.35, ease: "sine.in" }, 2.4);
+      tl.fromTo("#s2-inner", { opacity: 0 }, { opacity: 1, duration: 0.45, ease: "sine.out" }, 2.7);
+      tl.fromTo("#s2-card", { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 2.75);
       // push-in lento no painel enquanto a cena respira
       tl.fromTo("#s2-img", { scale: 1 }, { scale: 1.05, duration: 3.6, ease: "none", transformOrigin: "50% 30%" }, 2.5);
 
       // ---------- cena 2 → cena 3 (sub-beat 01 chamados): crossfade real ----------
-      tl.to("#s2-inner", { opacity: 0, duration: 0.6, ease: "sine.inOut" }, 5.5);
-      tl.fromTo("#s3-open", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "sine.inOut" }, 5.5);
+      tl.to("#s2-inner", { opacity: 0, duration: 0.35, ease: "sine.in" }, 5.4);
+      tl.fromTo("#s3-open", { opacity: 0 }, { opacity: 1, duration: 0.45, ease: "sine.out" }, 5.65);
       tl.fromTo("#s3-open .step-chip", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, 5.6);
       tl.fromTo("#s3-open .card-flow", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 5.65);
       tl.fromTo("#s3-open .step-line", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, 5.85);
       tl.fromTo("#s3-open-img", { scale: 1 }, { scale: 1.04, duration: 3.2, ease: "none", transformOrigin: "50% 20%" }, 5.5);
 
       // sub-beat 01 → sub-beat 02 (kanban): crossfade real dentro da mesma cena
-      tl.to("#s3-open", { opacity: 0, duration: 0.4, ease: "sine.inOut" }, 8.25);
-      tl.fromTo("#s3-board", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "sine.inOut" }, 8.25);
+      tl.to("#s3-open", { opacity: 0, duration: 0.3, ease: "sine.in" }, 8.15);
+      tl.fromTo("#s3-board", { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "sine.out" }, 8.4);
       tl.fromTo("#s3-board .step-chip", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 8.35);
       tl.fromTo("#s3-board-card", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }, 8.4);
       tl.fromTo("#s3-board .step-line", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 8.6);
-      // o quadro desliza para a direita, como quem acompanha o card até a coluna Concluído
+      // a lista desliza de lado, como quem passa os olhos pelas máquinas
       tl.fromTo("#s3-board-img", { scale: 1.08, xPercent: 3 }, { scale: 1.08, xPercent: -3, duration: 2.9, ease: "power1.inOut", transformOrigin: "50% 0%" }, 8.25);
 
       // ---------- cena 3 → cena 4: crossfade real para o hero ----------
       // beat-locked: 10.9s — entrada do hero alinhada à batida forte da música (10.93s no preset)
-      tl.to("#s3-board", { opacity: 0, duration: 0.7, ease: "sine.inOut" }, 10.9);
-      tl.fromTo("#s4-inner", { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "sine.inOut" }, 10.9);
-      tl.fromTo("#s4-back", { opacity: 0, y: -20 }, { opacity: 0.45, y: 0, duration: 0.8, ease: "power2.out" }, 10.9);
+      tl.to("#s3-board", { opacity: 0, duration: 0.3, ease: "sine.in" }, 10.8);
+      tl.fromTo("#s4-inner", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "sine.out" }, 11.05);
+      tl.fromTo("#s4-back", { opacity: 0, y: -20 }, { opacity: 0.45, y: 0, duration: 0.8, ease: "power2.out" }, 11.05);
       tl.fromTo("#s4-front", { opacity: 0, y: 30, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "power2.out" }, 11.0);
       tl.fromTo("#s4-caption", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 11.4);
       tl.fromTo("#s4-front-img", { scale: 1 }, { scale: 1.05, duration: 5.6, ease: "none", transformOrigin: "40% 60%" }, 10.9);
 
       // ---------- cena 4 → cena 5: crossfade real ----------
-      tl.to("#s4-inner", { opacity: 0, duration: 0.6, ease: "sine.inOut" }, 16.5);
-      tl.fromTo("#s5-inner", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "sine.inOut" }, 16.5);
+      tl.to("#s4-inner", { opacity: 0, duration: 0.35, ease: "sine.in" }, 16.4);
+      tl.fromTo("#s5-inner", { opacity: 0 }, { opacity: 1, duration: 0.45, ease: "sine.out" }, 16.7);
       // beat-grid: fato 1 em 17.47s, fato 2 em 18.56s, fato 3 em 19.66s — batidas fortes do preset
       tl.fromTo("#s5-fact-1", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 17.47);
       tl.fromTo("#s5-fact-2", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 18.56);
       tl.fromTo("#s5-fact-3", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 19.66);
 
       // ---------- cena 5 → cena 6: crossfade real para o desfecho ----------
-      tl.to("#s5-inner", { opacity: 0, duration: 0.6, ease: "sine.inOut" }, 21.0);
-      tl.fromTo("#s6-inner .wordmark", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 21.0);
-      tl.fromTo("#s6-inner .subline", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }, 21.35);
+      tl.to("#s5-inner", { opacity: 0, duration: 0.3, ease: "sine.in" }, 20.85);
+      tl.fromTo("#s6-inner .brand-logo", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.5, ease: "power2.out" }, 21.15);
+      tl.fromTo("#s6-inner .wordmark", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 21.2);
+      tl.fromTo("#s6-inner .subline", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }, 21.5);
       // única saída permitida: a cena final se apaga suavemente no quadro-a-quadro final
       tl.to("#s6-inner", { opacity: 0, duration: 0.4, ease: "sine.in" }, 23.1);
 
-      window.__timelines["ticket-os-ticket-brag-ptbr"] = tl;
+      window.__timelines["ticket-os-brag-ptbr"] = tl;
       tl.seek(0);
     </script>
   </body>

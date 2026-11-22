@@ -58,7 +58,7 @@
 		<span>Fila & Detalhes</span>
 		{#if data.queueCount !== undefined}
 			<span
-				class="bg-primary/10 border-primary/20 py-0.2 text-primary rounded-full border px-1.5 text-xs font-semibold"
+				class="bg-primary/10 border-primary/20 py-0.2 text-primary-strong rounded-full border px-1.5 text-xs font-semibold"
 			>
 				{data.queueCount}
 			</span>

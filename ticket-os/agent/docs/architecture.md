@@ -41,7 +41,7 @@ nativos.
 framework de UI completo), independente do resto.
 
 **Frontend — Svelte 5 + Vite + Tailwind v4 + shadcn-svelte**, portado do projeto de referência
-`acerola-reader/ticket-os/desktop` (ver `reuse.md` para o que foi copiado, adaptado ou
+`acerola-reader/acerola/desktop` (ver `reuse.md` para o que foi copiado, adaptado ou
 deixado de fora). Sem SvelteKit — o app tem só duas telas, então o roteamento de arquivos e o
 adapter da SvelteKit resolveriam um problema que não existe aqui; um Svelte+Vite comum com
 `svelte-spa-router` (2 rotas: `/popup`, `/dashboard`) já basta.

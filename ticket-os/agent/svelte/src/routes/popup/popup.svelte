@@ -254,7 +254,9 @@
 									<div
 										class="text-muted-foreground flex shrink-0 items-center gap-2 font-mono text-xs"
 									>
-										<span class="text-primary font-semibold">{proc.cpuPercent.toFixed(1)}%</span>
+										<span class="text-primary-strong font-semibold"
+											>{proc.cpuPercent.toFixed(1)}%</span
+										>
 										<span>{bytes(proc.memBytes)}</span>
 									</div>
 								</div>

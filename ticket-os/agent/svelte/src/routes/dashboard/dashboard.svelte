@@ -432,7 +432,7 @@
 								<div class="border-border/70 bg-muted/20 rounded-box border p-4">
 									<div class="flex items-center justify-between">
 										<div class="flex items-center gap-2">
-											<HardDriveIcon size={16} class="text-primary" />
+											<HardDriveIcon size={16} class="text-primary-strong" />
 											<span class="text-foreground text-sm font-semibold">{disk.mountpoint}</span>
 											<span
 												class="bg-muted text-muted-foreground rounded-chip px-1.5 py-0.5 font-mono text-xs"
@@ -467,7 +467,7 @@
 							<div class="mb-3 flex items-center justify-between">
 								<span class="text-muted-foreground text-xs">Banda Instantânea</span>
 								<div class="flex items-center gap-3 font-mono text-xs">
-									<span class="text-primary">↓ {bytesPerSec(netTotals.recv)}</span>
+									<span class="text-primary-strong">↓ {bytesPerSec(netTotals.recv)}</span>
 									<span class="text-chart-2">↑ {bytesPerSec(netTotals.sent)}</span>
 								</div>
 							</div>
@@ -503,7 +503,9 @@
 						<!-- Informações do Agente e Conexão -->
 						<TicketOsCard data={{ title: 'Status do Agente e Conexão' }} ui={{ class: 'p-5' }}>
 							<div class="flex items-center gap-3">
-								<div class="bg-primary/10 border-primary/20 text-primary rounded-box border p-3">
+								<div
+									class="bg-primary/10 border-primary/20 text-primary-strong rounded-box border p-3"
+								>
 									<ShieldCheckIcon size={24} />
 								</div>
 								<div>

@@ -1,0 +1,88 @@
+/* A paleta Prata Lunar do ticket-os — os MESMOS valores do dashboard
+   (`ticket-os/dashboard/client/src/lib/theme/tokens.css`): o agente e o painel são a mesma marca,
+   e mudar um é mudar o outro. Escuro é o padrão; claro é o `data-theme='light'`. */
+
+:root,
+[data-theme='dark'] {
+	--crust: #0e0e15;
+	--mantle: #13131c;
+	--base: #181824;
+	--surface: #222332;
+
+	--background: #11111a;
+	--foreground: #f1f5f9;
+	--card: #181824;
+	--card-foreground: #f1f5f9;
+	--popover: #181824;
+	--popover-foreground: #f1f5f9;
+	--primary: #cfd6dd;
+	--primary-foreground: #11111a;
+	--secondary: #222332;
+	--secondary-foreground: #f1f5f9;
+	--muted: #1e1e2d;
+	--muted-foreground: #94a3b8;
+	--accent: #222332;
+	--accent-foreground: #f1f5f9;
+	--accent-hero: #f2b84b;
+	--accent-hero-foreground: #11111a;
+	--destructive: #f87171;
+	--destructive-foreground: #11111a;
+	--border: #2b2c3d;
+	--input: #222332;
+	--ring: #cfd6dd;
+	--chart-1: #cfd6dd;
+	--chart-2: #f2b84b;
+	--chart-3: #9fd8c6;
+	--chart-4: #60a5fa;
+	--chart-5: #f87171;
+	--sidebar: #13131c;
+	--sidebar-foreground: #f1f5f9;
+	--sidebar-primary: #cfd6dd;
+	--sidebar-primary-foreground: #11111a;
+	--sidebar-accent: #222332;
+	--sidebar-accent-foreground: #f1f5f9;
+	--sidebar-border: #2b2c3d;
+	--sidebar-ring: #cfd6dd;
+}
+
+[data-theme='light'] {
+	--crust: #dfe2ea;
+	--mantle: #eceef4;
+	--base: #f5f6fa;
+	--surface: #dfe2ea;
+
+	--background: #f5f6fa;
+	--foreground: #11111a;
+	--card: #fbfbfd;
+	--card-foreground: #11111a;
+	--popover: #fbfbfd;
+	--popover-foreground: #11111a;
+	--primary: #b4bfca;
+	--primary-foreground: #11111a;
+	--secondary: #eceef4;
+	--secondary-foreground: #11111a;
+	--muted: #eceef4;
+	--muted-foreground: #5b6276;
+	--accent: #eceef4;
+	--accent-foreground: #11111a;
+	--accent-hero: #f1b441;
+	--accent-hero-foreground: #11111a;
+	--destructive: #bb1e1e;
+	--destructive-foreground: #f5f6fa;
+	--border: #dfe2ea;
+	--input: #dfe2ea;
+	--ring: #b4bfca;
+	--chart-1: #8194a6;
+	--chart-2: #c4850e;
+	--chart-3: #42a183;
+	--chart-4: #1d4ed8;
+	--chart-5: #dc2626;
+	--sidebar: #eff1f6;
+	--sidebar-foreground: #11111a;
+	--sidebar-primary: #b4bfca;
+	--sidebar-primary-foreground: #11111a;
+	--sidebar-accent: #eceef4;
+	--sidebar-accent-foreground: #11111a;
+	--sidebar-border: #dfe2ea;
+	--sidebar-ring: #b4bfca;
+}

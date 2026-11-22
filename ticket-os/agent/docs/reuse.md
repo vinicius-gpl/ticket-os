@@ -1,15 +1,16 @@
 # Reaproveitamento do projeto de referência
 
 Antes de escrever qualquer componente novo, o frontend em
-`acerola-reader/ticket-os/desktop` (Tauri + SvelteKit, o leitor de quadrinhos) foi lido por
+`acerola-reader/acerola/desktop` (Tauri + SvelteKit, o leitor de quadrinhos) foi lido por
 inteiro: `package.json`, `svelte.config.js`, `vite.config.ts`, `components.json`, o tema em
 `src/theme/`, e uma amostra de componentes (`ticket-os-button`, `ticket-os-card`,
 `ticket-os-mode-picker`) pra entender o padrão antes de copiar qualquer coisa.
 
 ## Reaproveitado tal e qual
 
-- **As variáveis CSS do Catppuccin** (`src/theme/colors/catppuccin.css` de lá →
-  `svelte/src/theme/catppuccin.css` aqui) — byte a byte a mesma paleta mocha/latte.
+- **Os nomes das variáveis CSS do tema** (`src/theme/colors/catppuccin.css` de lá →
+  `svelte/src/theme/palette.css` aqui). Os VALORES deixaram de ser o Catppuccin: hoje são a paleta
+  Prata Lunar do ticket-os, os mesmos do dashboard.
 - **O bloco `@theme inline`** do `tailwind.css`, que mapeia cada variável de cor pra um token do
   Tailwind v4 (`--color-primary: var(--primary)` etc.) — mesma técnica, mesmos nomes de token.
 - **`cn()`** (`clsx` + `tailwind-merge`) e os tipos auxiliares `WithElementRef`,
