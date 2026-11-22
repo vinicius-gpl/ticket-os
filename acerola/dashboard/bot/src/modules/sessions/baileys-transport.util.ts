@@ -34,7 +34,7 @@ type Session = { socket: WASocket; status: SessionStatus; hasConnected: boolean 
  *
  * Isto é enviado na hora de ler o QR code: mudar aqui só vale para vínculo NOVO.
  */
-const DEVICE_IDENTITY: [string, string, string] = ['Acerola Ticket', 'Chrome', '1.0.0'];
+const DEVICE_IDENTITY: [string, string, string] = ['ticket-os', 'Chrome', '1.0.0'];
 
 const SENT_IDS_KEPT = 200;
 

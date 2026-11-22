@@ -37,7 +37,7 @@ async function bootstrap(): Promise<void> {
     SwaggerModule.createDocument(
       app,
       new DocumentBuilder()
-        .setTitle('acerola-ticket')
+        .setTitle('ticket-os')
         .setDescription(
           [
             'API do acerola-ticket.',

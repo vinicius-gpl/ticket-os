@@ -136,7 +136,7 @@ function drawFooter(reference: string, currentPage: number, pageCount: number): 
     fontSize: 8,
     color: COLOR.subtext,
     columns: [
-      { text: `${reference} · Documento emitido pelo sistema Acerola Ticket` },
+      { text: `${reference} · Documento emitido pelo sistema ticket-os` },
       { text: `Página ${currentPage} de ${pageCount}`, alignment: 'right', width: 'auto' },
     ],
   };

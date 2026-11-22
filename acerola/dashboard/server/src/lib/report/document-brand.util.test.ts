@@ -11,7 +11,7 @@ describe('BRAND_LOGO', () => {
   // feliz
   it('is a real PNG, the format the three generators read', () => {
     expect(BRAND_LOGO.subarray(0, 8).toString('hex')).toBe(PNG_SIGNATURE);
-    expect(BRAND_NAME).toBe('acerola-ticket');
+    expect(BRAND_NAME).toBe('ticket-os');
   });
 
   // triste
@@ -27,9 +27,9 @@ describe('BRAND_LOGO', () => {
 
 describe('brandLogoWidth', () => {
   // feliz
-  it('gives a logo slightly wider than tall, in whole units', () => {
-    expect(brandLogoWidth(30)).toBe(33);
-    expect(brandLogoWidth(36)).toBe(40);
+  it('gives a square logo, in whole units', () => {
+    expect(brandLogoWidth(30)).toBe(30);
+    expect(brandLogoWidth(36)).toBe(36);
   });
 
   // triste

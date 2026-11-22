@@ -375,7 +375,7 @@ export class GithubService {
         if (!repoInfo) return;
 
         const issueTitle = `[${protocol}] ${title}`;
-        const issueBody = `### Chamado Aberto no Acerola Ticket\n\n**Protocolo:** ${protocol}\n**Solicitante:** ${requesterName}\n\n**Descrição:**\n${description}\n\n---\n*Gerado automaticamente em segundo plano via Acerola Ticket.*`;
+        const issueBody = `### Chamado Aberto no ticket-os\n\n**Protocolo:** ${protocol}\n**Solicitante:** ${requesterName}\n\n**Descrição:**\n${description}\n\n---\n*Gerado automaticamente em segundo plano via ticket-os.*`;
 
         const token = this.app ? await this.app.accessToken() : this.token;
         const result = await this.createIssue(
