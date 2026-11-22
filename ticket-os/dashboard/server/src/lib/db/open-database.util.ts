@@ -1,3 +1,5 @@
+import { mkdtempSync, readdirSync, readFileSync, writeFileSync, cpSync } from 'node:fs';
+import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 
 import { drizzle } from 'drizzle-orm/postgres-js';
@@ -49,6 +51,9 @@ const POOL_SIZE = 5;
  */
 const IDLE_TIMEOUT_SECONDS = 30;
 
+/** O schema de sempre. Outro só quando o banco é dividido com outros sistemas. */
+export const DEFAULT_SCHEMA = 'public';
+
 /**
  * Abre a conexão com o Postgres e aplica as migrations pendentes.
  *
@@ -60,21 +65,66 @@ const IDLE_TIMEOUT_SECONDS = 30;
  * a mesma migration duas vezes. Depois que o banco está no lugar, o sistema passa a usar o
  * pool — que é o que permite as telas buscarem várias coisas ao mesmo tempo.
  */
-export async function openDatabase(url: string): Promise<OpenDatabase> {
+export async function openDatabase(url: string, schema = DEFAULT_SCHEMA): Promise<OpenDatabase> {
+  assertSchemaName(schema);
+
+  /* Fora do `public`, toda conexão já nasce olhando só para o schema do sistema: as tabelas
+     do Drizzle não levam schema no nome, e é o `search_path` que decide onde elas moram. */
+  const connection = schema === DEFAULT_SCHEMA ? {} : { search_path: schema };
+
   /* Migration aplicada na partida: quem clona o projeto roda `npm run dev` e o banco já
      nasce com as tabelas. Esquecer `db:migrate` não é um passo que alguém deveria poder
      esquecer. */
-  const migrationClient = postgres(url, { max: 1 });
+  const migrationClient = postgres(url, { max: 1, connection });
 
   try {
-    await migrate(drizzle(migrationClient), { migrationsFolder: MIGRATIONS_FOLDER });
+    if (schema === DEFAULT_SCHEMA) {
+      await migrate(drizzle(migrationClient), { migrationsFolder: MIGRATIONS_FOLDER });
+    } else {
+      await migrationClient.unsafe(`create schema if not exists "${schema}"`);
+      await migrate(drizzle(migrationClient), {
+        migrationsFolder: migrationsForSchema(schema),
+        /* O histórico de migrations mora DENTRO do schema do sistema: o schema `drizzle`
+           padrão pode ser de outro sistema no mesmo banco, e ler o histórico dele faz o
+           migrator pular migrations que nunca rodaram aqui. */
+        migrationsSchema: schema,
+      });
+    }
   } finally {
     await migrationClient.end();
   }
 
-  const sql = postgres(url, { max: POOL_SIZE, idle_timeout: IDLE_TIMEOUT_SECONDS });
+  const sql = postgres(url, { max: POOL_SIZE, idle_timeout: IDLE_TIMEOUT_SECONDS, connection });
 
   return { db: drizzle(sql, { schema: drizzleSchema }), close: () => sql.end() };
+}
+
+/* O nome entra cru no SQL (`create schema`, `search_path`): só letras minúsculas, número e
+   sublinhado, para nunca virar injeção de SQL pela variável de ambiente. */
+function assertSchemaName(schema: string): void {
+  if (/^[a-z_][a-z0-9_]*$/.test(schema)) return;
+
+  throw new Error(`Invalid database schema name: ${schema}`);
+}
+
+/**
+ * Uma cópia das migrations com `"public".` trocado pelo schema do sistema.
+ *
+ * As migrations geradas pelo drizzle-kit escrevem `"public"."tabela"` nas chaves
+ * estrangeiras. Fora do `public`, essas referências apontariam para o schema errado — e as
+ * migrations versionadas não se editam. A troca acontece numa pasta temporária, a cada
+ * partida, e os arquivos de `drizzle/` ficam como foram gerados.
+ */
+function migrationsForSchema(schema: string): string {
+  const folder = mkdtempSync(join(tmpdir(), 'ticket-os-migrations-'));
+  cpSync(MIGRATIONS_FOLDER, folder, { recursive: true });
+
+  for (const file of readdirSync(folder).filter((name) => name.endsWith('.sql'))) {
+    const path = join(folder, file);
+    writeFileSync(path, readFileSync(path, 'utf8').replaceAll('"public".', `"${schema}".`));
+  }
+
+  return folder;
 }
 
 /**

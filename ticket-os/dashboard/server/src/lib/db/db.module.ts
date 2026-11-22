@@ -23,10 +23,12 @@ let close: (() => Promise<void>) | null = null;
       provide: DB,
       inject: [ENV],
       useFactory: async (env: Env): Promise<Database> => {
-        const opened = await openDatabase(env.DATABASE_URL);
+        const opened = await openDatabase(env.DATABASE_URL, env.DATABASE_SCHEMA);
         close = opened.close;
 
-        new Logger(DbModule.name).log(`Postgres em ${describeDatabaseUrl(env.DATABASE_URL)}`);
+        new Logger(DbModule.name).log(
+          `Postgres em ${describeDatabaseUrl(env.DATABASE_URL)} (schema ${env.DATABASE_SCHEMA})`,
+        );
 
         return opened.db;
       },

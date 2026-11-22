@@ -30,7 +30,7 @@ export async function openSeedDatabase(): Promise<OpenDatabase> {
   const url = requireDatabaseUrl();
   console.log(`Banco: ${describeDatabaseUrl(url)}`);
 
-  return openDatabase(url);
+  return openDatabase(url, process.env.DATABASE_SCHEMA?.trim() || undefined);
 }
 
 /**
@@ -48,7 +48,10 @@ export async function resetDatabase(): Promise<void> {
   config({ path: join(SERVER_ROOT, '.env'), quiet: true });
   assertNotProduction();
 
-  const opened = await openDatabase(requireDatabaseUrl());
+  const opened = await openDatabase(
+    requireDatabaseUrl(),
+    process.env.DATABASE_SCHEMA?.trim() || undefined,
+  );
   try {
     /* Só as tabelas DESTE sistema. O cadastro de pessoas é do Neon Auth, mora no schema
        `neon_auth` e não se apaga por aqui: quem entra e quem sai é decidido no painel da
