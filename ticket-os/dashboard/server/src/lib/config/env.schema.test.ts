@@ -26,7 +26,24 @@ describe('parseEnv', () => {
       API_WEBHOOK_RATE_LIMIT: 12,
       API_TRUST_PROXY_HOPS: 0,
       WHATSAPP_DAILY_LIMIT: 100,
+      DATABASE_SCHEMA: 'public',
     });
+  });
+
+  // feliz
+  /* Banco dividido com outros sistemas: o ticket-os mora no schema dele. */
+  it('accepts a schema of its own for a shared database', () => {
+    expect(parseEnv({ ...secrets, DATABASE_SCHEMA: 'ticket_os' }).DATABASE_SCHEMA).toBe(
+      'ticket_os',
+    );
+  });
+
+  // triste
+  /* O nome entra cru no SQL: qualquer coisa além de minúscula, número e `_` é recusada. */
+  it('refuses a schema name that could inject SQL', () => {
+    expect(() => parseEnv({ ...secrets, DATABASE_SCHEMA: 'x"; drop schema public; --' })).toThrow(
+      /DATABASE_SCHEMA/,
+    );
   });
 
   /* A trava de requisição precisa nascer LIGADA: um padrão ausente faria a API subir sem

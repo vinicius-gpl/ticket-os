@@ -96,6 +96,19 @@ export const envSchema = z.object({
     .startsWith('postgres', 'A DATABASE_URL precisa começar com postgres:// ou postgresql://'),
 
   /**
+   * O schema do Postgres onde moram as tabelas do sistema.
+   *
+   * `public` é o normal. Outro nome (`ticket_os`) serve para um banco DIVIDIDO com outros
+   * sistemas: as tabelas, os tipos e o histórico de migrations ficam todos dentro dele, sem
+   * encostar no que já existe no `public`.
+   */
+  DATABASE_SCHEMA: z
+    .string()
+    .trim()
+    .regex(/^[a-z_][a-z0-9_]*$/, 'DATABASE_SCHEMA aceita só letras minúsculas, números e _')
+    .default('public'),
+
+  /**
    * O banco que os testes E2E usam. Eles APAGAM e recriam as tabelas, então nunca pode ser o
    * mesmo da DATABASE_URL — na Neon, o caminho é criar uma branch do banco só para teste.
    *
