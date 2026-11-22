@@ -14,10 +14,10 @@ import { test } from "node:test";
 const root = resolve(import.meta.dirname, "../../..");
 const script = join(root, ".github/scripts/release/version.mjs");
 const files = [
-  "acerola/agent/wails.json",
-  "acerola/agent/src-go/lib/version/version.go",
-  "acerola/agent/svelte/package.json",
-  "acerola/agent/svelte/package-lock.json",
+  "ticket-os/agent/wails.json",
+  "ticket-os/agent/src-go/lib/version/version.go",
+  "ticket-os/agent/svelte/package.json",
+  "ticket-os/agent/svelte/package-lock.json",
 ];
 
 test("the bump CLI changes the real project files, preserves dependencies and is idempotent", (context) => {

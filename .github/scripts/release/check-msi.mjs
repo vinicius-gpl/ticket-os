@@ -49,7 +49,7 @@ assert.ok(
   ),
 );
 const service = table("ServiceInstall").find(
-  (row) => row.Name === "AcerolaAgent",
+  (row) => row.Name === "TicketOsAgent",
 );
 assert.ok(service);
 assert.equal(service.StartType, "2");

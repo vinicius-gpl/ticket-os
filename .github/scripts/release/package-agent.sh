@@ -4,13 +4,13 @@ set -euo pipefail
 version="${1:?Pass the release version}"
 [[ "$version" =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]] || exit 1
 root="$(git rev-parse --show-toplevel)"
-source_dir="$root/acerola/agent/build/windows/installer"
-script_dir="$root/acerola/agent/scripts/windows"
+source_dir="$root/ticket-os/agent/build/windows/installer"
+script_dir="$root/ticket-os/agent/scripts/windows"
 mkdir -p "$root/release"
-msi="$root/release/acerola-agent-$version-x64.msi"
+msi="$root/release/ticket-os-agent-$version-x64.msi"
 wixl -a x64 -D "Version=$version" -D "BinDir=$root/agent-bin" -D "SourceDir=$source_dir" -D "ScriptDir=$script_dir" "$source_dir/agent.wxs" -o "$msi"
 # Completa campos que wixl não preenche; o MSI compilado é conferido ao final.
-msibuild "$msi" -s 'Acerola Agent' 'Acerola' 'x64;1046'
+msibuild "$msi" -s 'ticket-os Agent' 'ticket-os' 'x64;1046'
 msibuild "$msi" -q "UPDATE \`ServiceInstall\` SET \`ErrorControl\` = 32769 WHERE \`ServiceInstall\` = 'InstallService'"
 # wixl não expõe Schedule no MajorUpgrade: remove a versão antiga dentro da transação,
 # após InstallInitialize. Se a instalação falhar, o Windows Installer pode revertê-la.
@@ -24,7 +24,7 @@ msibuild "$msi" -i "$acl_table"
 cp "$script_dir/install-certificate.ps1" "$script_dir/configure-machine.ps1" "$root/release/"
 # A ação padrão de processo fecha a bandeja antes da remoção dos arquivos. A falha
 # é ignorada quando ninguém está logado; o serviço é parado pelo ServiceControl.
-printf 'Action\tType\tSource\tTarget\n%s\n%s\n%s\n' 's72	i2	S72	S255' 'CustomAction	Action' 'CloseTray	3170	SystemFolder	"[SystemFolder]taskkill.exe" /F /IM "Acerola Agent.exe"' > "$table_dir/CustomAction.idt"
+printf 'Action\tType\tSource\tTarget\n%s\n%s\n%s\n' 's72	i2	S72	S255' 'CustomAction	Action' 'CloseTray	3170	SystemFolder	"[SystemFolder]taskkill.exe" /F /IM "ticket-os Agent.exe"' > "$table_dir/CustomAction.idt"
 msibuild "$msi" -i "$table_dir/CustomAction.idt"
 msibuild "$msi" -q 'INSERT INTO `InstallExecuteSequence` (`Action`, `Condition`, `Sequence`) VALUES ('\''CloseTray'\'', '\''1'\'', 1901)'
 node "$root/.github/scripts/release/check-msi.mjs" "$msi" "$version"

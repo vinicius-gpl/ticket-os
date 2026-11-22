@@ -22,7 +22,7 @@ for (const branch of ["main", "develop"]) {
   let pushed = false;
   for (let attempt = 0; attempt < 3 && !pushed; attempt++) {
     git(root, "fetch", "origin", branch);
-    const temporary = mkdtempSync(join(tmpdir(), "acerola-bump-"));
+    const temporary = mkdtempSync(join(tmpdir(), "ticket-os-bump-"));
     const checkout = join(temporary, "checkout");
     git(root, "worktree", "add", "--detach", checkout, `origin/${branch}`);
     try {

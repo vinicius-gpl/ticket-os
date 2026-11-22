@@ -1,4 +1,4 @@
-# Hyperframes Composition Brief: Acerola Ticket (PT-BR)
+# Hyperframes Composition Brief: ticket-os (PT-BR)
 
 Derivado do brief do acerola-reader (`acerola-reader/docs/github/ptbr/brag/composition-brief.md`).
 A identidade visual, os tempos de cena, a trilha, os SFX e as transições seguem aquele brief; a

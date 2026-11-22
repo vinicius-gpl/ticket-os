@@ -33,11 +33,11 @@ const REPO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..', '
 const POLICY_PATH = join(REPO_ROOT, 'license-policy.json');
 
 /** As pastas com `node_modules` — uma por instalação do npm. */
-const NODE_ROOTS = ['acerola/dashboard', 'acerola/dashboard/bot', 'acerola/agent/svelte'];
+const NODE_ROOTS = ['ticket-os/dashboard', 'ticket-os/dashboard/bot', 'ticket-os/agent/svelte'];
 
 /** O módulo Go, e o nome dele: os pacotes do PRÓPRIO projeto não são dependência. */
-const GO_ROOT = 'acerola/agent';
-const GO_OWN_MODULE = 'github.com/vinicius-gpl/acerola-ticket';
+const GO_ROOT = 'ticket-os/agent';
+const GO_OWN_MODULE = 'github.com/vinicius-gpl/ticket-os';
 /** Versão fixa: a ferramenta que confere licença não pode mudar sozinha de um dia para o outro. */
 const GO_LICENSES = 'github.com/google/go-licenses/v2@v2.0.1';
 /** O agente é um programa de Windows: é para esse sistema que as dependências são lidas. */
@@ -46,14 +46,14 @@ const GO_TARGET_OS = 'windows';
 /**
  * Onde o NOSSO código mora — é nele que os `import` proibidos são procurados.
  *
- * `acerola/dashboard/bot/src` fica de fora DE PROPÓSITO: o bot é o único lugar que pode importar
+ * `ticket-os/dashboard/bot/src` fica de fora DE PROPÓSITO: o bot é o único lugar que pode importar
  * o Baileys (GPL por tabela), e a regra existe justamente para ele não vazar para cá.
  */
 const SOURCE_DIRS = [
-  'acerola/dashboard/client/src',
-  'acerola/dashboard/server/src',
-  'acerola/dashboard/shared/src',
-  'acerola/agent/svelte/src',
+  'ticket-os/dashboard/client/src',
+  'ticket-os/dashboard/server/src',
+  'ticket-os/dashboard/shared/src',
+  'ticket-os/agent/svelte/src',
 ];
 const SOURCE_EXTENSIONS = /\.(ts|tsx|js|mjs|cjs|svelte)$/;
 
