@@ -1,11 +1,11 @@
 @import 'tailwindcss';
 
-@import './catppuccin.css';
+@import './palette.css';
 
 /* ==========================================================================
    OS MESMOS TOKENS DO DASHBOARD (`ticket-os/dashboard/client/src/lib/theme/tokens.css`).
 
-   A paleta Catppuccin fica intacta em `catppuccin.css`; aqui entram os apelidos e as
+   A paleta Prata Lunar fica em `palette.css`; aqui entram os apelidos e as
    medidas que o dashboard já tinha e o agente não: `ink-*`, os tons de estado, o raio por
    papel e a régua de altura. Os valores são os de lá — mudar em um é mudar no outro.
    ========================================================================== */
@@ -26,19 +26,22 @@
 	--control-lg: 2.5rem;
 }
 
-/* Os tons de estado. `danger` é o `destructive` da paleta; os outros três não existem no
-   Catppuccin portado, então moram aqui — claro no Latte, escuro no Mocha. */
+/* Os tons de estado. `danger` é o `destructive` da paleta; os outros três não existem na
+   paleta, então moram aqui — um valor no claro, outro no escuro. */
 :root,
-[data-theme='catppuccin-mocha'] {
-	--success: #34d399;
+[data-theme='dark'] {
+	--success: #4ade80;
 	--warning: #fbbf24;
 	--info: #60a5fa;
+	--primary-strong: #cfd6dd;
 }
 
-[data-theme='catppuccin-latte'] {
-	--success: #059669;
-	--warning: #d97706;
-	--info: #2563eb;
+/* No claro a prata é clara demais para texto: texto na cor da marca usa `primary-strong`. */
+[data-theme='light'] {
+	--success: #137337;
+	--warning: #a14a08;
+	--info: #1d4ed8;
+	--primary-strong: #5f7386;
 }
 
 @theme inline {
@@ -75,6 +78,7 @@
 	--color-popover-foreground: var(--popover-foreground);
 	--color-primary: var(--primary);
 	--color-primary-foreground: var(--primary-foreground);
+	--color-primary-strong: var(--primary-strong);
 	--color-secondary: var(--secondary);
 	--color-secondary-foreground: var(--secondary-foreground);
 	--color-muted: var(--muted);

@@ -7,20 +7,20 @@ import '../src/theme/tailwind.css';
 const preview: Preview = {
 	globalTypes: {
 		theme: {
-			description: 'Tema Catppuccin',
+			description: 'Tema',
 			toolbar: {
 				title: 'Tema',
 				icon: 'mirror',
 				items: [
-					{ value: 'catppuccin-mocha', title: 'Mocha (escuro)' },
-					{ value: 'catppuccin-latte', title: 'Latte (claro)' }
+					{ value: 'dark', title: 'Escuro' },
+					{ value: 'light', title: 'Claro' }
 				],
 				dynamicTitle: true
 			}
 		}
 	},
 	initialGlobals: {
-		theme: 'catppuccin-mocha'
+		theme: 'dark'
 	},
 	decorators: [
 		(story, context) => {

@@ -1,7 +1,7 @@
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
-// Portado de acerola-reader/ticket-os/desktop/svelte/src/lib/utils/cn.utils.ts
+// Portado de acerola-reader/acerola/desktop/svelte/src/lib/utils/cn.utils.ts
 // — mesma função e mesmos tipos auxiliares, exigidos pelos componentes que
 // o shadcn-svelte gera em ui/.
 export function cn(...inputs: ClassValue[]) {

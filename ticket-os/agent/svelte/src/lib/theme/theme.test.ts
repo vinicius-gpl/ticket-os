@@ -16,32 +16,32 @@ beforeEach(() => {
 });
 
 describe('useTheme', () => {
-	it('começa em catppuccin-mocha quando não há nada salvo', async () => {
+	it('começa no tema escuro quando não há nada salvo', async () => {
 		// feliz
 		const { useTheme } = await freshTheme();
 		const theme = useTheme();
-		expect(theme.value).toBe('catppuccin-mocha');
-		expect(document.documentElement.getAttribute('data-theme')).toBe('catppuccin-mocha');
+		expect(theme.value).toBe('dark');
+		expect(document.documentElement.getAttribute('data-theme')).toBe('dark');
 	});
 
-	it('alterna entre mocha e latte e persiste no localStorage', async () => {
+	it('alterna entre escuro e claro e persiste no localStorage', async () => {
 		// feliz
 		const { useTheme } = await freshTheme();
 		const theme = useTheme();
 
 		theme.toggle();
-		expect(theme.value).toBe('catppuccin-latte');
-		expect(window.localStorage.getItem(STORAGE_KEY)).toBe('catppuccin-latte');
-		expect(document.documentElement.getAttribute('data-theme')).toBe('catppuccin-latte');
+		expect(theme.value).toBe('light');
+		expect(window.localStorage.getItem(STORAGE_KEY)).toBe('light');
+		expect(document.documentElement.getAttribute('data-theme')).toBe('light');
 
 		theme.toggle();
-		expect(theme.value).toBe('catppuccin-mocha');
+		expect(theme.value).toBe('dark');
 	});
 
 	it('ignora valor inválido salvo no localStorage e cai no padrão', async () => {
 		// triste: alguém (ou uma versão antiga) gravou um tema que não existe mais
 		window.localStorage.setItem(STORAGE_KEY, 'nord');
 		const { useTheme } = await freshTheme();
-		expect(useTheme().value).toBe('catppuccin-mocha');
+		expect(useTheme().value).toBe('dark');
 	});
 });

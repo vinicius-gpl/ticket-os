@@ -1,17 +1,17 @@
 // Tema simplificado em relação ao hook do projeto de referência
 // (acerola-reader usa @tauri-apps/plugin-store + 4 paletas + modo "system").
-// Aqui só existem duas paletas (mocha/latte), persistidas em localStorage
+// Aqui só existem duas paletas (escuro/claro), persistidas em localStorage
 // como o pedido original especifica — sem API de plugin nenhuma.
 
-export type Theme = 'catppuccin-mocha' | 'catppuccin-latte';
+export type Theme = 'dark' | 'light';
 
 const STORAGE_KEY = 'ticket-os-agent-theme';
-const DEFAULT_THEME: Theme = 'catppuccin-mocha';
+const DEFAULT_THEME: Theme = 'dark';
 
 function loadInitial(): Theme {
 	if (typeof window === 'undefined') return DEFAULT_THEME;
 	const saved = window.localStorage.getItem(STORAGE_KEY);
-	return saved === 'catppuccin-latte' ? saved : DEFAULT_THEME;
+	return saved === 'light' ? saved : DEFAULT_THEME;
 }
 
 const initial = loadInitial();
@@ -30,7 +30,7 @@ export function useTheme() {
 			return theme;
 		},
 		toggle() {
-			theme = theme === 'catppuccin-mocha' ? 'catppuccin-latte' : 'catppuccin-mocha';
+			theme = theme === 'dark' ? 'light' : 'dark';
 			window.localStorage.setItem(STORAGE_KEY, theme);
 			apply(theme);
 		}
