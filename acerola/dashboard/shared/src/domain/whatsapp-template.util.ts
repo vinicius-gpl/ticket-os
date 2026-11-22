@@ -122,7 +122,7 @@ export const WHATSAPP_TEMPLATES: Record<WhatsappTemplateKey, WhatsappTemplateDef
       'Enviada ao próprio responsável quando as mensagens do dia chegam perto do limite seguro.',
     variables: ['enviadas', 'limite'],
     defaultBody:
-      '⚠️ *Acerola Ticket:* o seu número já enviou {{enviadas}} de {{limite}} mensagens automáticas hoje. Ao chegar no limite, o sistema para de enviar por você até amanhã.',
+      '⚠️ *ticket-os:* o seu número já enviou {{enviadas}} de {{limite}} mensagens automáticas hoje. Ao chegar no limite, o sistema para de enviar por você até amanhã.',
   },
 };
 
