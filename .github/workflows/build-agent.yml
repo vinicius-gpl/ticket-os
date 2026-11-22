@@ -40,18 +40,18 @@ jobs:
       - name: Resolve build version
         id: version
         shell: bash
-        run: node -e 'const fs=require("node:fs");const v=JSON.parse(fs.readFileSync("acerola/agent/wails.json")).info.productVersion;fs.appendFileSync(process.env.GITHUB_OUTPUT,`version=${v}\n`)'
+        run: node -e 'const fs=require("node:fs");const v=JSON.parse(fs.readFileSync("ticket-os/agent/wails.json")).info.productVersion;fs.appendFileSync(process.env.GITHUB_OUTPUT,`version=${v}\n`)'
       - uses: actions/setup-go@v6
         with:
-          go-version-file: acerola/agent/go.mod
-          cache-dependency-path: acerola/agent/go.sum
+          go-version-file: ticket-os/agent/go.mod
+          cache-dependency-path: ticket-os/agent/go.sum
       - name: Test release rules
         shell: bash
         run: node --test .github/scripts/release/*.test.mjs
       - name: Test installer functions and complexity
-        run: ./acerola/agent/scripts/windows/setup.test.ps1
+        run: ./ticket-os/agent/scripts/windows/setup.test.ps1
       - name: Build and validate only the agent
-        working-directory: acerola/agent
+        working-directory: ticket-os/agent
         run: |
           $PSNativeCommandUseErrorActionPreference = $true
           npm ci --prefix svelte
@@ -62,13 +62,13 @@ jobs:
           npm test --prefix svelte
           go vet ./...
           go test ./...
-          go build -trimpath -ldflags '-s -w' -o build/bin/acerola-agent-service.exe ./src-go/cmd/service
+          go build -trimpath -ldflags '-s -w' -o build/bin/ticket-os-agent-service.exe ./src-go/cmd/service
       - uses: actions/upload-artifact@v4
         with:
           name: agent-bin
           path: |
-            acerola/agent/build/bin/Acerola Agent.exe
-            acerola/agent/build/bin/acerola-agent-service.exe
+            ticket-os/agent/build/bin/ticket-os Agent.exe
+            ticket-os/agent/build/bin/ticket-os-agent-service.exe
           if-no-files-found: error
   package:
     needs: build
@@ -105,14 +105,14 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: agent-unsigned-msi
-          path: acerola/agent/build/release
+          path: ticket-os/agent/build/release
       - name: Use a disposable certificate for PR checks only
         if: ${{ !inputs.release }}
         run: |
           $password = [guid]::NewGuid().ToString('N')
           $secure = ConvertTo-SecureString $password -AsPlainText -Force
-          ./acerola/agent/scripts/windows/new-signing-certificate.ps1 -OutputDirectory "$env:RUNNER_TEMP/test-key" -Password $secure
-          $base64 = [Convert]::ToBase64String([IO.File]::ReadAllBytes("$env:RUNNER_TEMP/test-key/acerola-agent-signing.pfx"))
+          ./ticket-os/agent/scripts/windows/new-signing-certificate.ps1 -OutputDirectory "$env:RUNNER_TEMP/test-key" -Password $secure
+          $base64 = [Convert]::ToBase64String([IO.File]::ReadAllBytes("$env:RUNNER_TEMP/test-key/ticket-os-agent-signing.pfx"))
           "AGENT_SIGNING_PFX_BASE64=$base64" >> $env:GITHUB_ENV
           "AGENT_SIGNING_PASSWORD=$password" >> $env:GITHUB_ENV
       - name: Sign release with persistent certificate or disposable test key
@@ -126,16 +126,16 @@ jobs:
             $env:AGENT_SIGNING_PFX_BASE64 = $env:RELEASE_PFX
             $env:AGENT_SIGNING_PASSWORD = $env:RELEASE_PASSWORD
           }
-          ./acerola/agent/scripts/windows/package.ps1 -Version $env:RELEASE_VERSION
+          ./ticket-os/agent/scripts/windows/package.ps1 -Version $env:RELEASE_VERSION
       - name: Install, start and uninstall on a clean Windows runner
         env:
           RELEASE_VERSION: ${{ needs.build.outputs.version }}
         run: |
-          $dir = Join-Path $pwd 'acerola/agent/build/release'
+          $dir = Join-Path $pwd 'ticket-os/agent/build/release'
           & "$dir/install-certificate.ps1"
-          ./acerola/agent/scripts/windows/smoke-test.ps1 -MsiPath "$dir/acerola-agent-$env:RELEASE_VERSION-x64.msi"
+          ./ticket-os/agent/scripts/windows/smoke-test.ps1 -MsiPath "$dir/ticket-os-agent-$env:RELEASE_VERSION-x64.msi"
       - uses: actions/upload-artifact@v4
         with:
           name: agent-release
-          path: acerola/agent/build/release/*
+          path: ticket-os/agent/build/release/*
           if-no-files-found: error

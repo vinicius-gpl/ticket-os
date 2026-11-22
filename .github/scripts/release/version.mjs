@@ -36,10 +36,10 @@ export function compareVersions(left, right) {
 export function versionFiles(component) {
   if (component === "agent")
     return [
-      "acerola/agent/wails.json",
-      "acerola/agent/src-go/lib/version/version.go",
-      "acerola/agent/svelte/package.json",
-      "acerola/agent/svelte/package-lock.json",
+      "ticket-os/agent/wails.json",
+      "ticket-os/agent/src-go/lib/version/version.go",
+      "ticket-os/agent/svelte/package.json",
+      "ticket-os/agent/svelte/package-lock.json",
     ];
   return [
     "package.json",
@@ -47,7 +47,7 @@ export function versionFiles(component) {
     "shared/package.json",
     "server/package.json",
     "client/package.json",
-  ].map((file) => `acerola/dashboard/${file}`);
+  ].map((file) => `ticket-os/dashboard/${file}`);
 }
 
 function updateJson(root, file, change) {
@@ -65,8 +65,8 @@ function updateJson(root, file, change) {
 export function currentVersion(root, component) {
   const file =
     component === "agent"
-      ? "acerola/agent/wails.json"
-      : "acerola/dashboard/package.json";
+      ? "ticket-os/agent/wails.json"
+      : "ticket-os/dashboard/package.json";
   const data = JSON.parse(readFileSync(resolve(root, file), "utf8"));
   return component === "agent" ? data.info.productVersion : data.version;
 }

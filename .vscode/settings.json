@@ -5,12 +5,12 @@
     "source.fixAll.eslint": "explicit"
   },
   "eslint.workingDirectories": [
-    { "directory": "acerola/dashboard/shared", "changeProcessCWD": true },
-    { "directory": "acerola/dashboard/server", "changeProcessCWD": true },
-    { "directory": "acerola/dashboard/client", "changeProcessCWD": true }
+    { "directory": "ticket-os/dashboard/shared", "changeProcessCWD": true },
+    { "directory": "ticket-os/dashboard/server", "changeProcessCWD": true },
+    { "directory": "ticket-os/dashboard/client", "changeProcessCWD": true }
   ],
   "prettier.requireConfig": true,
-  "typescript.tsdk": "acerola/dashboard/node_modules/typescript/lib",
+  "typescript.tsdk": "ticket-os/dashboard/node_modules/typescript/lib",
   "files.associations": {
     "*.css": "tailwindcss"
   },

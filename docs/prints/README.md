@@ -1,6 +1,6 @@
 # Prints
 
-Capturas do Acerola Ticket com dados de demonstração, tema escuro, 1568x766. Usadas no vídeo de
+Capturas do ticket-os com dados de demonstração, tema escuro, 1568x766. Usadas no vídeo de
 `docs/brag/`.
 
 | Arquivo | Tela |

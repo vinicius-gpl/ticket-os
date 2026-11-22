@@ -21,7 +21,7 @@ jobs:
         with:
           node-version: 24
       - name: Install storage SDK from the project lockfile
-        working-directory: acerola/dashboard
+        working-directory: ticket-os/dashboard
         run: npm ci --ignore-scripts
       - name: Promote an existing release to LTS
         run: node .github/scripts/release/promote-agent-lts.mjs "$RELEASE_TAG"

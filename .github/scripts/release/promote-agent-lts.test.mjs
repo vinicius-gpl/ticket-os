@@ -7,7 +7,7 @@ function fixture() {
   const version = "1.2.3";
   const files = new Map(
     [
-      "acerola-agent-1.2.3-x64.msi",
+      "ticket-os-agent-1.2.3-x64.msi",
       "publisher.cer",
       "install-certificate.ps1",
       "configure-machine.ps1",
@@ -23,7 +23,7 @@ function fixture() {
     version,
     publishedAt: "2026-10-16T12:00:00.000Z",
     artifacts: {
-      msi: artifact("acerola-agent-1.2.3-x64.msi"),
+      msi: artifact("ticket-os-agent-1.2.3-x64.msi"),
       certificate: artifact("publisher.cer"),
     },
   };
@@ -62,7 +62,7 @@ test("never promotes incomplete or altered artifacts, wrong namespaces or lower 
     (f) => f.objects.delete("agent/releases/1.2.3/install-certificate.ps1"),
     (f) =>
       f.objects.set(
-        "agent/releases/1.2.3/acerola-agent-1.2.3-x64.msi",
+        "agent/releases/1.2.3/ticket-os-agent-1.2.3-x64.msi",
         Buffer.from("tampered"),
       ),
     (f) => f.objects.set("agent/lts.json", Buffer.from('{"version":"2.0.0"}')),

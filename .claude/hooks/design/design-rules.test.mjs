@@ -16,22 +16,22 @@ function file(path, content = '') {
   return { path, content };
 }
 
-const DASHBOARD_LIB = 'acerola/dashboard/client/src/lib/components';
-const DASHBOARD_HOOKS = 'acerola/dashboard/client/src/lib/hooks';
-const DASHBOARD_ROUTES = 'acerola/dashboard/client/src/routes';
-const AGENT_LIB = 'acerola/agent/svelte/src/lib/components';
-const AGENT_ROUTES = 'acerola/agent/svelte/src/routes';
+const DASHBOARD_LIB = 'ticket-os/dashboard/client/src/lib/components';
+const DASHBOARD_HOOKS = 'ticket-os/dashboard/client/src/lib/hooks';
+const DASHBOARD_ROUTES = 'ticket-os/dashboard/client/src/routes';
+const AGENT_LIB = 'ticket-os/agent/svelte/src/lib/components';
+const AGENT_ROUTES = 'ticket-os/agent/svelte/src/routes';
 
 describe('component-prefix', () => {
   // feliz
-  it('accepts acerola-* folders in lib and in feature routes, in both apps', () => {
+  it('accepts ticket-os-* folders in lib and in feature routes, in both apps', () => {
     const files = [
-      file(`${DASHBOARD_LIB}/acerola-button/acerola-button.svelte`),
+      file(`${DASHBOARD_LIB}/ticket-os-button/ticket-os-button.svelte`),
       file(
-        `${DASHBOARD_ROUTES}/(app)/tickets/components/acerola-ticket-card/acerola-ticket-card.svelte`,
+        `${DASHBOARD_ROUTES}/(app)/tickets/components/ticket-os-ticket-card/ticket-os-ticket-card.svelte`,
       ),
       file(`${DASHBOARD_LIB}/ui/button/button.svelte`),
-      file(`${AGENT_LIB}/acerola-badge/acerola-badge.svelte`),
+      file(`${AGENT_LIB}/ticket-os-badge/ticket-os-badge.svelte`),
       file(`${AGENT_LIB}/ui/badge/badge.svelte`),
     ];
 
@@ -55,36 +55,36 @@ describe('feature-component-in-lib', () => {
   it('follows the import chain to the single feature that owns it', () => {
     const files = [
       file(
-        `${DASHBOARD_LIB}/acerola-dashboard-view/acerola-dashboard-view.svelte`,
-        `import X from '$lib/components/acerola-peaking/acerola-peaking.svelte';`,
+        `${DASHBOARD_LIB}/ticket-os-dashboard-view/ticket-os-dashboard-view.svelte`,
+        `import X from '$lib/components/ticket-os-peaking/ticket-os-peaking.svelte';`,
       ),
-      file(`${DASHBOARD_LIB}/acerola-peaking/acerola-peaking.svelte`),
+      file(`${DASHBOARD_LIB}/ticket-os-peaking/ticket-os-peaking.svelte`),
       file(
         `${DASHBOARD_ROUTES}/(app)/dashboard/+page.svelte`,
-        `import V from '$lib/components/acerola-dashboard-view/acerola-dashboard-view.svelte';`,
+        `import V from '$lib/components/ticket-os-dashboard-view/ticket-os-dashboard-view.svelte';`,
       ),
     ];
 
     assert.deepEqual(run('feature-component-in-lib', files).sort(), [
-      `${DASHBOARD_LIB}/acerola-dashboard-view só usado por routes/dashboard`,
-      `${DASHBOARD_LIB}/acerola-peaking só usado por routes/dashboard`,
+      `${DASHBOARD_LIB}/ticket-os-dashboard-view só usado por routes/dashboard`,
+      `${DASHBOARD_LIB}/ticket-os-peaking só usado por routes/dashboard`,
     ]);
   });
 
   // feliz
   it('keeps components used by two features or by the root layout', () => {
     const files = [
-      file(`${DASHBOARD_LIB}/acerola-button/acerola-button.svelte`),
-      file(`${DASHBOARD_LIB}/acerola-shell/acerola-shell.svelte`),
+      file(`${DASHBOARD_LIB}/ticket-os-button/ticket-os-button.svelte`),
+      file(`${DASHBOARD_LIB}/ticket-os-shell/ticket-os-shell.svelte`),
       file(
         `${DASHBOARD_ROUTES}/(app)/tickets/+page.svelte`,
-        `components/acerola-button/acerola-button`,
+        `components/ticket-os-button/ticket-os-button`,
       ),
       file(
         `${DASHBOARD_ROUTES}/(app)/parts/+page.svelte`,
-        `components/acerola-button/acerola-button`,
+        `components/ticket-os-button/ticket-os-button`,
       ),
-      file(`${DASHBOARD_ROUTES}/+layout.svelte`, `components/acerola-shell/acerola-shell`),
+      file(`${DASHBOARD_ROUTES}/+layout.svelte`, `components/ticket-os-shell/ticket-os-shell`),
     ];
 
     assert.deepEqual(run('feature-component-in-lib', files), []);
@@ -94,11 +94,11 @@ describe('feature-component-in-lib', () => {
   /* Chamados é uma tela por contexto: o componente que as três usam é compartilhado. */
   it('keeps components shared by the same screen of different contexts', () => {
     const files = [
-      file(`${DASHBOARD_LIB}/acerola-ticket-list-view/acerola-ticket-list-view.svelte`),
+      file(`${DASHBOARD_LIB}/ticket-os-ticket-list-view/ticket-os-ticket-list-view.svelte`),
       ...['infra', 'system', 'maintenance'].map((context) =>
         file(
           `${DASHBOARD_ROUTES}/(app)/${context}/tickets/+page.svelte`,
-          `components/acerola-ticket-list-view/acerola-ticket-list-view`,
+          `components/ticket-os-ticket-list-view/ticket-os-ticket-list-view`,
         ),
       ),
     ];
@@ -111,52 +111,52 @@ describe('feature-component-in-lib', () => {
      features, e uma só continua sendo uma. */
   it('names the feature by the folder inside the context', () => {
     const files = [
-      file(`${DASHBOARD_LIB}/acerola-button/acerola-button.svelte`),
-      file(`${DASHBOARD_LIB}/acerola-usage-chart/acerola-usage-chart.svelte`),
+      file(`${DASHBOARD_LIB}/ticket-os-button/ticket-os-button.svelte`),
+      file(`${DASHBOARD_LIB}/ticket-os-usage-chart/ticket-os-usage-chart.svelte`),
       file(
         `${DASHBOARD_ROUTES}/(app)/infra/computers/[id]/+page.svelte`,
-        `components/acerola-usage-chart/acerola-usage-chart components/acerola-button/acerola-button`,
+        `components/ticket-os-usage-chart/ticket-os-usage-chart components/ticket-os-button/ticket-os-button`,
       ),
       file(
         `${DASHBOARD_ROUTES}/(app)/infra/parts/+page.svelte`,
-        `components/acerola-button/acerola-button`,
+        `components/ticket-os-button/ticket-os-button`,
       ),
     ];
 
     assert.deepEqual(run('feature-component-in-lib', files), [
-      `${DASHBOARD_LIB}/acerola-usage-chart só usado por routes/infra/computers`,
+      `${DASHBOARD_LIB}/ticket-os-usage-chart só usado por routes/infra/computers`,
     ]);
   });
 
   // triste
   it('follows the import chain in the agent app, without +page', () => {
     const files = [
-      file(`${AGENT_LIB}/acerola-metric-tile/acerola-metric-tile.svelte`),
+      file(`${AGENT_LIB}/ticket-os-metric-tile/ticket-os-metric-tile.svelte`),
       file(
         `${AGENT_ROUTES}/dashboard/dashboard.svelte`,
-        `import M from '$lib/components/acerola-metric-tile/acerola-metric-tile.svelte';`,
+        `import M from '$lib/components/ticket-os-metric-tile/ticket-os-metric-tile.svelte';`,
       ),
     ];
 
     assert.deepEqual(run('feature-component-in-lib', files), [
-      `${AGENT_LIB}/acerola-metric-tile só usado por routes/dashboard`,
+      `${AGENT_LIB}/ticket-os-metric-tile só usado por routes/dashboard`,
     ]);
   });
 
   // feliz
   it('never lets a dashboard feature own an agent component with the same name', () => {
     const files = [
-      file(`${DASHBOARD_LIB}/acerola-button/acerola-button.svelte`),
-      file(`${AGENT_LIB}/acerola-button/acerola-button.svelte`),
+      file(`${DASHBOARD_LIB}/ticket-os-button/ticket-os-button.svelte`),
+      file(`${AGENT_LIB}/ticket-os-button/ticket-os-button.svelte`),
       file(
         `${DASHBOARD_ROUTES}/(app)/tickets/+page.svelte`,
-        `components/acerola-button/acerola-button`,
+        `components/ticket-os-button/ticket-os-button`,
       ),
       // O agent nunca importa o próprio botão em nenhuma rota: sem dono, então não é "de feature".
     ];
 
     assert.deepEqual(run('feature-component-in-lib', files), [
-      `${DASHBOARD_LIB}/acerola-button só usado por routes/tickets`,
+      `${DASHBOARD_LIB}/ticket-os-button só usado por routes/tickets`,
     ]);
   });
 
@@ -164,16 +164,16 @@ describe('feature-component-in-lib', () => {
   it('ignores generic-by-design primitives with a single consumer, prefixed or not', () => {
     const files = [
       file(`${DASHBOARD_LIB}/radar-chart/radar-chart.svelte`),
-      file(`${DASHBOARD_LIB}/acerola-chart-legend/acerola-chart-legend.svelte`),
-      file(`${DASHBOARD_LIB}/acerola-dialog/acerola-dialog.ts`),
+      file(`${DASHBOARD_LIB}/ticket-os-chart-legend/ticket-os-chart-legend.svelte`),
+      file(`${DASHBOARD_LIB}/ticket-os-dialog/ticket-os-dialog.ts`),
       file(
         `${DASHBOARD_ROUTES}/(app)/tickets/+page.svelte`,
-        `components/radar-chart/radar-chart components/acerola-chart-legend/acerola-chart-legend components/acerola-dialog/acerola-dialog`,
+        `components/radar-chart/radar-chart components/ticket-os-chart-legend/ticket-os-chart-legend components/ticket-os-dialog/ticket-os-dialog`,
       ),
-      file(`${AGENT_LIB}/acerola-separator/acerola-separator.svelte`),
+      file(`${AGENT_LIB}/ticket-os-separator/ticket-os-separator.svelte`),
       file(
         `${AGENT_ROUTES}/dashboard/dashboard.svelte`,
-        `components/acerola-separator/acerola-separator`,
+        `components/ticket-os-separator/ticket-os-separator`,
       ),
     ];
 
@@ -183,15 +183,15 @@ describe('feature-component-in-lib', () => {
   // triste
   it('still flags a domain component whose name only resembles a generic one', () => {
     const files = [
-      file(`${DASHBOARD_LIB}/acerola-usage-chart/acerola-usage-chart.svelte`),
+      file(`${DASHBOARD_LIB}/ticket-os-usage-chart/ticket-os-usage-chart.svelte`),
       file(
         `${DASHBOARD_ROUTES}/(app)/computers/+page.svelte`,
-        `components/acerola-usage-chart/acerola-usage-chart`,
+        `components/ticket-os-usage-chart/ticket-os-usage-chart`,
       ),
     ];
 
     assert.deepEqual(run('feature-component-in-lib', files), [
-      `${DASHBOARD_LIB}/acerola-usage-chart só usado por routes/computers`,
+      `${DASHBOARD_LIB}/ticket-os-usage-chart só usado por routes/computers`,
     ]);
   });
 });
@@ -219,7 +219,7 @@ describe('hook-location', () => {
 
   // feliz
   it('has nothing to flag in the agent app, which has no lib/hooks', () => {
-    const files = [file(`${AGENT_LIB}/acerola-button/acerola-button.svelte`)];
+    const files = [file(`${AGENT_LIB}/ticket-os-button/ticket-os-button.svelte`)];
 
     assert.deepEqual(run('hook-location', files), []);
   });
@@ -230,8 +230,8 @@ describe('lib-folder', () => {
   it('accepts the mapped folders in both apps', () => {
     const files = [
       file(`${DASHBOARD_LIB.replace('/components', '')}/components/x.svelte`),
-      file('acerola/agent/svelte/src/lib/components/x.svelte'),
-      file('acerola/agent/svelte/src/lib/utils/format.ts'),
+      file('ticket-os/agent/svelte/src/lib/components/x.svelte'),
+      file('ticket-os/agent/svelte/src/lib/utils/format.ts'),
     ];
 
     assert.deepEqual(run('lib-folder', files), []);
@@ -240,20 +240,20 @@ describe('lib-folder', () => {
   // triste
   it('flags the agent debt: metrics and reporting are not in the map', () => {
     const files = [
-      file('acerola/agent/svelte/src/lib/metrics/store.svelte.ts'),
-      file('acerola/agent/svelte/src/lib/reporting/client.ts'),
+      file('ticket-os/agent/svelte/src/lib/metrics/store.svelte.ts'),
+      file('ticket-os/agent/svelte/src/lib/reporting/client.ts'),
     ];
 
     assert.deepEqual(run('lib-folder', files).sort(), [
-      'acerola/agent/svelte/src/lib/metrics pasta fora do mapa',
-      'acerola/agent/svelte/src/lib/reporting pasta fora do mapa',
+      'ticket-os/agent/svelte/src/lib/metrics pasta fora do mapa',
+      'ticket-os/agent/svelte/src/lib/reporting pasta fora do mapa',
     ]);
   });
 });
 
 describe('class rules', () => {
   const component = (content, lib = DASHBOARD_LIB) =>
-    file(`${lib}/acerola-card/acerola-card.svelte`, `<div class="${content}"></div>`);
+    file(`${lib}/ticket-os-card/ticket-os-card.svelte`, `<div class="${content}"></div>`);
 
   // feliz
   it('accepts role radius, tokens and the shadow scale', () => {
@@ -280,7 +280,7 @@ describe('class rules', () => {
   it('lets the mobile bottom drawer keep its shadow-2xl', () => {
     const files = [
       file(
-        `${DASHBOARD_LIB}/acerola-responsive-dialog-content/acerola-responsive-dialog-content.svelte`,
+        `${DASHBOARD_LIB}/ticket-os-responsive-dialog-content/ticket-os-responsive-dialog-content.svelte`,
         `<div class="rounded-t-3xl shadow-2xl"></div>`,
       ),
     ];
@@ -336,7 +336,7 @@ describe('route rules', () => {
   it('leaves a component file alone, even inside routes/', () => {
     const files = [
       file(
-        `${DASHBOARD_ROUTES}/(app)/tickets/components/acerola-x/acerola-x.svelte`,
+        `${DASHBOARD_ROUTES}/(app)/tickets/components/ticket-os-x/ticket-os-x.svelte`,
         '<button class="h-8">x</button>',
       ),
     ];
@@ -349,7 +349,7 @@ describe('route rules', () => {
     const files = [
       file(
         `${DASHBOARD_ROUTES}/(app)/tickets/+page.svelte`,
-        `import X from '../tickets/components/acerola-x/acerola-x.svelte';`,
+        `import X from '../tickets/components/ticket-os-x/ticket-os-x.svelte';`,
       ),
     ];
 
@@ -362,7 +362,7 @@ describe('storage-folder-language', () => {
   it('flags pt-BR bucket folders', () => {
     const files = [
       file(
-        'acerola/dashboard/server/src/modules/tickets/service/x.service.ts',
+        'ticket-os/dashboard/server/src/modules/tickets/service/x.service.ts',
         "const FOLDER = 'chamados-anexos';",
       ),
     ];
@@ -374,7 +374,7 @@ describe('storage-folder-language', () => {
   it('accepts English folders', () => {
     const files = [
       file(
-        'acerola/dashboard/server/src/modules/tickets/service/x.service.ts',
+        'ticket-os/dashboard/server/src/modules/tickets/service/x.service.ts',
         "const FOLDER = 'ticket-attachments';",
       ),
     ];
@@ -385,15 +385,15 @@ describe('storage-folder-language', () => {
 
 describe('doc-file-name', () => {
   // triste
-  it('flags a doc file name outside kebab-case, anywhere under acerola/', () => {
-    const files = [file('acerola/agent/docs/ARQUITETURA.md')];
+  it('flags a doc file name outside kebab-case, anywhere under ticket-os/', () => {
+    const files = [file('ticket-os/agent/docs/ARQUITETURA.md')];
 
     assert.equal(run('doc-file-name', files).length, 1);
   });
 
   // feliz
   it('accepts a kebab-case doc file name', () => {
-    const files = [file('acerola/agent/docs/architecture.md')];
+    const files = [file('ticket-os/agent/docs/architecture.md')];
 
     assert.deepEqual(run('doc-file-name', files), []);
   });
@@ -426,12 +426,12 @@ describe('baseline', () => {
 
 describe('violationsTouching', () => {
   const inFolder = { rule: 'component-prefix', file: `${DASHBOARD_LIB}/text-field`, detail: 'x' };
-  const elsewhere = { rule: 'raw-palette', file: `${DASHBOARD_LIB}/acerola-card/acerola-card.svelte`, detail: 'x' };
+  const elsewhere = { rule: 'raw-palette', file: `${DASHBOARD_LIB}/ticket-os-card/ticket-os-card.svelte`, detail: 'x' };
 
   // feliz
   it('matches the violation file itself', () => {
     assert.deepEqual(
-      violationsTouching([elsewhere], `${DASHBOARD_LIB}/acerola-card/acerola-card.svelte`),
+      violationsTouching([elsewhere], `${DASHBOARD_LIB}/ticket-os-card/ticket-os-card.svelte`),
       [elsewhere],
     );
   });

@@ -13,7 +13,7 @@ export async function promoteLts(tag, get, put) {
   const directory = mkdtempSync(join(tmpdir(), "agent-lts-"));
   try {
     for (const name of [
-      `acerola-agent-${version}-x64.msi`,
+      `ticket-os-agent-${version}-x64.msi`,
       "publisher.cer",
       "install-certificate.ps1",
       "configure-machine.ps1",
@@ -40,7 +40,7 @@ export async function promoteLts(tag, get, put) {
 
 async function main() {
   const require = createRequire(
-    resolve("acerola/dashboard/server/package.json"),
+    resolve("ticket-os/dashboard/server/package.json"),
   );
   const {
     S3Client,
