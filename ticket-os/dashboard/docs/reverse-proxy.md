@@ -49,7 +49,7 @@ configurados no Traefik.
 ```yaml
 services:
   app:
-    # ... build, env_file e healthcheck como em docker/compose.yml, SEM a seção `ports`:
+    # ... build, env_file e healthcheck como em .config/docker/compose.yml, SEM a seção `ports`:
     # atrás do proxy, a porta não é publicada direto na máquina.
     labels:
       - traefik.enable=true
