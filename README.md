@@ -330,11 +330,6 @@ Uma imagem só: o Nest serve `/api` **e** a tela na mesma porta (3000 dentro do 
 em todos os projetos). O banco (Neon) e os arquivos (R2) são remotos, então não há volume de
 dados — o container precisa só das variáveis do `server/.env` (`DATABASE_URL`, `R2_*`) para subir.
 
-Em produção o dashboard roda no servidor hetzner, pelo Komodo ([`.komodo/`](.komodo/)): a cada
-push na `main`, a Procedure `hetzner_ticket-os` faz Pull, Build da imagem no próprio servidor e
-Deploy no Swarm, atrás do Caddy de lá, em `ticket-os.vinicius-gpl.com`. Os segredos são
-Variables do Komodo com o prefixo `TICKET_OS_` (lista no topo do `.komodo/komodo.toml`).
-
 Atrás de qualquer proxy (Caddy, Traefik ou nginx), parte da proteção é
 configurada nele — tamanho máximo de upload, limite das rotas públicas, `API_TRUST_PROXY_HOPS`.
 Os exemplos prontos estão em [`ticket-os/dashboard/docs/reverse-proxy.md`](ticket-os/dashboard/docs/reverse-proxy.md).
