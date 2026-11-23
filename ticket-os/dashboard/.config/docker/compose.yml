@@ -5,20 +5,26 @@
 # guarda as conexões cifradas dos números de WhatsApp vinculados. O container só precisa das
 # variáveis do `server/.env` (DATABASE_URL, R2_*) pra subir — sem elas, o server recusa iniciar.
 #
-# Em produção fica atrás de um Traefik (ex.: Coolify), que resolve domínio e TLS;
-# localmente é só `-p 3005:3005`.
+# Em produção roda no Swarm do hetzner pelo Komodo (.komodo/ na raiz do repositório), atrás do
+# Caddy do servidor. Dentro do container a API escuta na porta 3000, como em todos os projetos;
+# localmente ela aparece em http://localhost:3005.
+#
+#   docker compose -f ticket-os/dashboard/.config/docker/compose.yml up --build
 services:
   app:
     build:
-      context: ..
-      dockerfile: docker/dockerfile
+      context: ../..
+      dockerfile: .config/docker/dockerfile
     env_file:
-      - path: ../server/.env
+      - path: ../../server/.env
         required: false
-      - path: ../bot/.env
+      - path: ../../bot/.env
         required: false
+    # Vence o API_PORT do server/.env (o de desenvolvimento, fora do container).
+    environment:
+      - API_PORT=3000
     ports:
-      - '3005:3005'
+      - '3005:3000'
     volumes:
       - bot-data:/data
     # SAÚDE DE VERDADE, não "o processo está de pé".
@@ -35,7 +41,7 @@ services:
           'CMD',
           'node',
           '-e',
-          "fetch('http://127.0.0.1:' + (process.env.API_PORT || 3005) + '/api/health').then((response) => process.exit(response.ok ? 0 : 1)).catch(() => process.exit(1))",
+          "fetch('http://127.0.0.1:' + (process.env.API_PORT || 3000) + '/api/health').then((response) => process.exit(response.ok ? 0 : 1)).catch(() => process.exit(1))",
         ]
       interval: 30s
       timeout: 10s

@@ -2,8 +2,9 @@
 #
 # Uma imagem só. O Nest serve `/api` e o build estático do client na mesma porta
 # (`ServeStaticModule` em `server/src/app.module.ts`) — nada de Nginx aqui: em produção
-# fica atrás de um Traefik, que já resolve o roteamento por domínio. Um segundo processo
-# só pra servir arquivo estático seria uma peça a mais sem função.
+# fica atrás do Caddy do servidor (Komodo, `.komodo/` na raiz), que já resolve o roteamento por
+# domínio. Um segundo processo só pra servir arquivo estático seria uma peça a mais sem função.
+# Contexto do build: a pasta ticket-os/dashboard/ (com o `.dockerignore` dela).
 #
 # A etapa final leva só os pacotes de PRODUÇÃO do server e do shared, instalados num estágio
 # à parte (`prod-deps`). Antes ela copiava o `node_modules` inteiro do build — Vite, Storybook,
@@ -76,9 +77,11 @@ COPY --from=build /repo/bot/dist bot/dist
 # Os scripts de administração (ex.: promover o super-admin) rodam de dentro do container.
 COPY --from=build /repo/scripts scripts
 ENV BOT_DATA_DIR=/data
-EXPOSE 3005
+# Porta 3000 dentro do container, como em todos os projetos (fora dele, o desenvolvimento usa a 3005).
+ENV API_PORT=3000
+EXPOSE 3000
 # Consulta HTTP interna; falhas e timeouts ficam no histórico de saúde do Docker.
 HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
-  CMD node -e "Promise.all(['http://127.0.0.1:' + (process.env.API_PORT || 3005) + '/api/health'].map(async (url) => { const response = await fetch(url, { signal: AbortSignal.timeout(3000), redirect: 'error' }); if (!response.ok) throw new Error(url + ': HTTP ' + response.status); })).then(() => process.exit(0)).catch((error) => { console.error(error.message); process.exit(1); })"
+  CMD node -e "Promise.all(['http://127.0.0.1:' + (process.env.API_PORT || 3000) + '/api/health'].map(async (url) => { const response = await fetch(url, { signal: AbortSignal.timeout(3000), redirect: 'error' }); if (!response.ok) throw new Error(url + ': HTTP ' + response.status); })).then(() => process.exit(0)).catch((error) => { console.error(error.message); process.exit(1); })"
 
-CMD ["sh", "-c", "if [ \"$BOT_API_URL\" = \"http://bot:4005\" ] || [ -z \"$BOT_API_URL\" ]; then export BOT_API_URL=\"http://127.0.0.1:${BOT_PORT:-4005}\"; fi; if [ -n \"$BOT_API_TOKEN\" ] && [ -n \"$BOT_SESSION_KEY\" ]; then BOT_SERVER_URL=\"${BOT_SERVER_URL:-http://127.0.0.1:${API_PORT:-3005}/api}\" node bot/dist/main.js & fi; exec node server/dist/main.js"]
+CMD ["sh", "-c", "if [ \"$BOT_API_URL\" = \"http://bot:4005\" ] || [ -z \"$BOT_API_URL\" ]; then export BOT_API_URL=\"http://127.0.0.1:${BOT_PORT:-4005}\"; fi; if [ -n \"$BOT_API_TOKEN\" ] && [ -n \"$BOT_SESSION_KEY\" ]; then BOT_SERVER_URL=\"${BOT_SERVER_URL:-http://127.0.0.1:${API_PORT:-3000}/api}\" node bot/dist/main.js & fi; exec node server/dist/main.js"]

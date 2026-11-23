@@ -1,0 +1,137 @@
+# Komodo deploy of the ticket-os dashboard (ticket-os/dashboard/) on the hetzner server.
+# Names follow <server>_<app>; Swarm completes the services with _<service> (hetzner_ticket-os_app).
+#
+#   Sync       applies this file (GitHub webhook on push to main).
+#   Repo       clone of main on the hetzner server; Build and Stack read from it.
+#   Build      ticket-os/dashboard/.config/docker/dockerfile built ON the hetzner server itself.
+#              No registry: the image stays local as ticket-os:<short commit>-hetzner.
+#   Stack      .komodo/ticket-os.compose.yml on the hetzner Swarm; komodo.sh runs the deploy steps
+#              and route.sh publishes ticket-os.caddy (ticket-os.vinicius-gpl.com) on the server's Caddy.
+#   Procedure  Pull -> Build -> Deploy, triggered by the GitHub webhook
+#              (/listener/github/procedure/hetzner_ticket-os/main).
+#   Action     native Swarm rollback to the previous version.
+#
+# Secrets are Komodo Variables (secret) with the TICKET_OS_ prefix: DATABASE_URL, NEON_AUTH_URL,
+# R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_BUCKET, BOT_API_TOKEN and BOT_SESSION_KEY.
+
+[[resource_sync]]
+name = "ticket-os"
+description = "Aplica o deploy do ticket-os (.komodo/komodo.toml)"
+tags = ["env:hetzner", "app:ticket-os"]
+[resource_sync.config]
+git_provider = "github.com"
+repo = "vinicius-gpl/ticket-os"
+branch = "main"
+resource_path = [".komodo/komodo.toml"]
+delete = false
+
+[[repo]]
+name = "hetzner_ticket-os"
+description = "Clone da main do ticket-os no hetzner"
+tags = ["env:hetzner", "app:ticket-os"]
+[repo.config]
+server = "hetzner"
+git_provider = "github.com"
+repo = "vinicius-gpl/ticket-os"
+branch = "main"
+webhook_enabled = false
+links = ["https://github.com/vinicius-gpl/ticket-os/tree/main/ticket-os/dashboard"]
+
+[[build]]
+name = "hetzner_ticket-os"
+description = "Imagem do ticket-os, construída no próprio hetzner (sem registry)"
+tags = ["env:hetzner", "app:ticket-os"]
+[build.config]
+builder = "hetzner"
+linked_repo = "hetzner_ticket-os"
+webhook_enabled = false
+build_path = "ticket-os/dashboard"
+dockerfile_path = ".config/docker/dockerfile"
+image_name = "ticket-os"
+image_tag = "hetzner"
+include_latest_tag = false
+include_version_tags = false
+include_commit_tag = true
+# The Neon Auth address goes into the bundle (public: it only says WHERE the login happens).
+# VITE_API_URL empty = same origin (the server serves the client).
+build_args = """
+VITE_NEON_AUTH_URL=[[TICKET_OS_NEON_AUTH_URL]]
+VITE_API_URL=
+"""
+labels = """
+org.opencontainers.image.source=https://github.com/vinicius-gpl/ticket-os
+app=ticket-os
+server=hetzner
+"""
+links = ["https://ticket-os.vinicius-gpl.com"]
+
+[[stack]]
+name = "hetzner_ticket-os"
+description = "ticket-os no Swarm do hetzner"
+tags = ["env:hetzner", "app:ticket-os"]
+[stack.config]
+swarm = "hetzner"
+project_name = "hetzner_ticket-os"
+linked_repo = "hetzner_ticket-os"
+webhook_enabled = false
+run_directory = ".komodo"
+file_paths = ["ticket-os.compose.yml"]
+extra_args = ["--resolve-image", "never", "--detach=false"]
+links = ["https://ticket-os.vinicius-gpl.com"]
+pre_deploy.command = "sh komodo.sh pre-deploy ticket-os hetzner"
+compose_cmd_wrapper_include = ["config", "deploy"]
+compose_cmd_wrapper = '''
+DATABASE_URL='[[TICKET_OS_DATABASE_URL]]' \
+NEON_AUTH_URL='[[TICKET_OS_NEON_AUTH_URL]]' \
+R2_ACCOUNT_ID='[[TICKET_OS_R2_ACCOUNT_ID]]' \
+R2_ACCESS_KEY_ID='[[TICKET_OS_R2_ACCESS_KEY_ID]]' \
+R2_SECRET_ACCESS_KEY='[[TICKET_OS_R2_SECRET_ACCESS_KEY]]' \
+R2_BUCKET='[[TICKET_OS_R2_BUCKET]]' \
+BOT_API_TOKEN='[[TICKET_OS_BOT_API_TOKEN]]' \
+BOT_SESSION_KEY='[[TICKET_OS_BOT_SESSION_KEY]]' \
+sh komodo.sh deploy ticket-os hetzner [[COMPOSE_COMMAND]]
+'''
+post_deploy.command = "sh komodo.sh post-deploy ticket-os hetzner"
+
+[[procedure]]
+name = "hetzner_ticket-os"
+description = "Publica a main do ticket-os no hetzner: Pull, Build e Deploy"
+tags = ["env:hetzner", "app:ticket-os"]
+[procedure.config]
+webhook_enabled = true
+
+[[procedure.config.stage]]
+name = "Pull"
+executions = [
+  { execution.type = "PullRepo", execution.params.repo = "hetzner_ticket-os" },
+]
+
+[[procedure.config.stage]]
+name = "Build"
+executions = [
+  { execution.type = "RunBuild", execution.params.build = "hetzner_ticket-os" },
+]
+
+[[procedure.config.stage]]
+name = "Deploy"
+executions = [
+  { execution.type = "DeployStack", execution.params.stack = "hetzner_ticket-os" },
+]
+
+[[action]]
+name = "hetzner_ticket-os_rollback"
+description = "Volta o ticket-os para a versão anterior (rollback do Swarm)"
+tags = ["env:hetzner", "app:ticket-os"]
+[action.config]
+webhook_enabled = false
+file_contents = '''
+const stack = 'hetzner_ticket-os';
+await komodo.execute_server_terminal(
+  {
+    server: 'hetzner',
+    command: `docker service ls -q --filter label=com.docker.stack.namespace=${stack} | xargs -r -n1 docker service rollback --detach=false`,
+    init: { command: 'sh' },
+  },
+  { onLine: (line) => console.log(line), onFinish: (code) => console.log(`exit ${code}`) },
+);
+'''
