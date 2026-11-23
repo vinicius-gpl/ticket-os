@@ -391,7 +391,7 @@ Local:
 | `web`       | `ticket-os/dashboard/client/` |
 | `db`        | Banco, migrations e seeds   |
 | `contracts` | `ticket-os/dashboard/shared/` |
-| `docker`    | `ticket-os/dashboard/.config/docker/` e `.komodo/` |
+| `docker`    | `ticket-os/dashboard/.config/docker/` |
 | `ci`        | `.github/`                  |
 | `docs`      | `.md` na raiz               |
 | `deps`      | Atualização de dependência  |

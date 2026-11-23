@@ -11,7 +11,6 @@
 ^ticket-os/dashboard/scripts/tsconfig\.json$
 ^ticket-os/dashboard/commitlint\.config\.js$
 ^ticket-os/dashboard/\.config/docker/
-^\.komodo/
 ^ticket-os/dashboard/(shared|server|client)/eslint\.config\.ts$
 ^ticket-os/dashboard/(shared|server|client)/tsconfig[^/]*\.json$
 ^ticket-os/dashboard/(shared|server|client)/vitest[^/]*\.config\.ts$

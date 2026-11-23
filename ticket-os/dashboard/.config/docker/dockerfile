@@ -2,8 +2,7 @@
 #
 # Uma imagem só. O Nest serve `/api` e o build estático do client na mesma porta
 # (`ServeStaticModule` em `server/src/app.module.ts`) — nada de Nginx aqui: em produção
-# fica atrás do Caddy do servidor (Komodo, `.komodo/` na raiz), que já resolve o roteamento por
-# domínio. Um segundo processo só pra servir arquivo estático seria uma peça a mais sem função.
+# fica atrás de um proxy (Caddy, Traefik ou nginx), que já resolve o roteamento por domínio. Um segundo processo só pra servir arquivo estático seria uma peça a mais sem função.
 # Contexto do build: a pasta ticket-os/dashboard/ (com o `.dockerignore` dela).
 #
 # A etapa final leva só os pacotes de PRODUÇÃO do server e do shared, instalados num estágio

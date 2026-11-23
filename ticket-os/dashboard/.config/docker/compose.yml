@@ -5,9 +5,8 @@
 # guarda as conexões cifradas dos números de WhatsApp vinculados. O container só precisa das
 # variáveis do `server/.env` (DATABASE_URL, R2_*) pra subir — sem elas, o server recusa iniciar.
 #
-# Em produção roda no Swarm do hetzner pelo Komodo (.komodo/ na raiz do repositório), atrás do
-# Caddy do servidor. Dentro do container a API escuta na porta 3000, como em todos os projetos;
-# localmente ela aparece em http://localhost:3005.
+# Dentro do container a API escuta na porta 3000, como em todos os projetos; localmente ela
+# aparece em http://localhost:3005.
 #
 #   docker compose -f ticket-os/dashboard/.config/docker/compose.yml up --build
 services:
