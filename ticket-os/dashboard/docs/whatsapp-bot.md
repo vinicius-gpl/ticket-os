@@ -140,10 +140,10 @@ Para subir só o bot: `npm run dev:bot`. Para conferir lint, tipos e testes dele
 
 ```bash
 cd ticket-os/dashboard
-docker compose -f docker/compose.yml up --build
+docker compose -f .config/docker/compose.yml up --build
 ```
 
-O bot sobe dentro do mesmo container (`docker/dockerfile`) quando `BOT_API_TOKEN` e
+O bot sobe dentro do mesmo container (`.config/docker/dockerfile`) quando `BOT_API_TOKEN` e
 `BOT_SESSION_KEY` estão definidos, escutando em `127.0.0.1:4005`. O volume (`bot-data`, em `/data`)
 guarda as conexões cifradas dos números vinculados. Perder o volume não perde dado de chamado — só
 obriga cada pessoa a ler o QR code de novo. O sistema roda com **uma instância só** do bot: a

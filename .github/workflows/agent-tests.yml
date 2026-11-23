@@ -5,7 +5,7 @@ on:
       [
         "ticket-os/agent/**",
         ".github/scripts/release/**",
-        ".github/workflows/*-agent*.yml",
+        ".github/workflows/agent-*.yml",
         ".github/workflows/release-bump.yml",
       ]
   push:
@@ -14,11 +14,11 @@ on:
       [
         "ticket-os/agent/**",
         ".github/scripts/release/**",
-        ".github/workflows/*-agent*.yml",
+        ".github/workflows/agent-*.yml",
         ".github/workflows/release-bump.yml",
       ]
 permissions:
   contents: read
 jobs:
   check:
-    uses: ./.github/workflows/build-agent.yml
+    uses: ./.github/workflows/agent-build.yml

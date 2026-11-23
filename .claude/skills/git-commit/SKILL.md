@@ -29,7 +29,7 @@ Uma mudança que toca dois locais são **dois commits**. Os locais:
 | `db` | `ticket-os/dashboard/server/src/lib/db/`, `ticket-os/dashboard/server/drizzle/`, `ticket-os/dashboard/scripts/seed/` |
 | `backend` | o resto de `ticket-os/dashboard/server/` |
 | `web` | `ticket-os/dashboard/client/` |
-| `docker` | `ticket-os/dashboard/docker/` |
+| `docker` | `ticket-os/dashboard/.config/docker/` e `.komodo/` |
 | `ci` | `.github/` |
 | `docs` | `.md` da raiz |
 | `deps` | só `package.json`/`package-lock.json` por atualização de dependência |

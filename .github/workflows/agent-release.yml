@@ -9,7 +9,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   build:
-    uses: ./.github/workflows/build-agent.yml
+    uses: ./.github/workflows/agent-build.yml
     with:
       release: true
     secrets: inherit
